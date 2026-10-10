@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLASHDEAL PRO — E-Commerce Flash Sale Simulator | MNR University Project #7</title>
+  <meta name="description" content="High-concurrency E-Commerce Flash Sale Simulator demonstrating thread synchronization, race condition elimination, and inventory integrity. Built for MNR University OOP Mini-Project.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="nav-brand" id="navBrand">
+      <span class="brand-badge" id="brandBadge">BIG SALE DAY</span>
+      <span class="brand-title" id="brandTitle">⚡ FLASHDEAL PRO</span>
+    </div>
+    <div class="nav-academic" id="navAcademic">
+      <span class="academic-badge" id="academicBadge">MNR University • CSE / AIML • Roll: 35 • Project #7</span>
+      <div class="status-pill" id="statusPill">
+        <span class="status-dot"></span>
+        <span>CONCURRENCY ENGINE ACTIVE</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container" id="mainContainer">
+
+    <!-- HERO HEADER -->
+    <header class="hero-card" id="heroCard">
+      <div class="hero-content" id="heroContent">
+        <h1 id="heroTitle">E-Commerce Flash Sale Simulator</h1>
+        <p id="heroSubtitle">
+          Experience real-time thread synchronization and mutual exclusion under extreme concurrency. 
+          Witness how atomic operations prevent race conditions, negative inventory, and double-selling when dozens of shoppers attempt purchases simultaneously.
+        </p>
+        <div class="hero-actions" id="heroActions">
+          <a href="#simulatorArena" class="btn-primary" id="jumpSimulatorBtn">
+            <span>⚡ Launch Simulator Arena</span>
+          </a>
+          <a href="https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7" target="_blank" class="btn-secondary" id="viewGithubBtn">
+            <span>View GitHub Repository ↗</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- METRICS KPI GRID -->
+    <section class="metrics-grid" id="metricsGrid" aria-label="Key Performance Indicators">
+      <div class="metric-card" id="cardRevenue">
+        <div class="metric-bar" style="background: var(--accent-rose);"></div>
+        <div class="metric-header">Total Revenue</div>
+        <div class="metric-value" id="metricRevenue">₹ 0.00</div>
+        <div class="metric-sub">Successful orders only</div>
+      </div>
+
+      <div class="metric-card" id="cardUnitsSold">
+        <div class="metric-bar" style="background: var(--accent-emerald);"></div>
+        <div class="metric-header">Units Sold</div>
+        <div class="metric-value" id="metricUnitsSold">0</div>
+        <div class="metric-sub">Fulfilled physical stock</div>
+      </div>
+
+      <div class="metric-card" id="cardBlocked">
+        <div class="metric-bar" style="background: #ef4444;"></div>
+        <div class="metric-header">Overselling Blocked</div>
+        <div class="metric-value" id="metricBlocked">0</div>
+        <div class="metric-sub">OutOfStockException handled</div>
+      </div>
+
+      <div class="metric-card" id="cardSuccessRate">
+        <div class="metric-bar" style="background: var(--accent-indigo);"></div>
+        <div class="metric-header">Success Rate</div>
+        <div class="metric-value" id="metricSuccessRate">0.0%</div>
+        <div class="metric-sub">Fulfilled vs total attempts</div>
+      </div>
+    </section>
+
+    <!-- SIMULATOR ARENA -->
+    <section class="simulator-section" id="simulatorArena" aria-label="Flash Sale Simulator Arena">
+      
+      <!-- CONTROLS CARD -->
+      <div class="card" id="simulationControlsCard">
+        <h2 class="card-title" id="controlsTitle"><span>⚙️</span> Simulation Parameters</h2>
+        <p class="card-desc" id="controlsDesc">Configure competing shopper count, select target inventory, and fire the virtual CountDownLatch barrier.</p>
+
+        <div class="form-group">
+          <label class="form-label" for="productSelect">Select Flash Sale Product:</label>
+          <select id="productSelect" class="form-select"></select>
+        </div>
+
+        <div class="selected-preview" id="selectedPreview">
+          <div>
+            <div class="preview-name" id="previewProductName">OnePlus Nord Buds 2 TWS Earbuds</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Current Active Inventory:</div>
+          </div>
+          <div class="preview-stock" id="previewStock">25 units remaining</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="customerCount">Competing Shoppers:</label>
+            <input type="number" id="customerCount" class="form-input" value="50" min="1" max="200" step="5">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="qtyPerCustomer">Units per Shopper:</label>
+            <input type="number" id="qtyPerCustomer" class="form-input" value="1" min="1" max="5">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="couponSelect">Promotional Coupon:</label>
+          <select id="couponSelect" class="form-select">
+            <option value="NONE">No Coupon (Base Flash Price)</option>
+            <option value="SAVE10" selected>SAVE10 (10% OFF on >= ₹500, Max ₹300)</option>
+            <option value="FLAT100">FLAT100 (Flat ₹100 OFF on >= ₹999)</option>
+            <option value="BANK15">BANK15 (15% Instant Card OFF on >= ₹1500, Max ₹750)</option>
+          </select>
+        </div>
+
+        <!-- PROGRESS CONTAINER -->
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-header">
+            <span>Simulation Progress</span>
+            <span id="progressText">Ready to simulate</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressBar"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
+          <button type="button" class="btn-secondary" id="resetStockBtn" style="flex: 1; justify-content: center;">
+            ↺ Reset Stock to 10
+          </button>
+          <button type="button" class="btn-primary" id="startSimulationBtn" style="flex: 2; justify-content: center;">
+            ⚡ START SIMULTANEOUS FLASH SALE RUSH
+          </button>
+        </div>
+      </div>
+
+      <!-- TERMINAL CONSOLE CARD -->
+      <div class="card" id="terminalConsoleCard" style="padding: 0; background: transparent; border: none;">
+        <div class="terminal-window" id="terminalWindow">
+          <div class="terminal-header" id="terminalHeader">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title">REAL-TIME PURCHASE CONCURRENCY ACTIVITY LOG</div>
+            <div>
+              <button type="button" class="btn-secondary" id="clearLogBtn" style="padding: 3px 10px; font-size: 0.72rem;">Clear</button>
+            </div>
+          </div>
+          <div class="terminal-body" id="terminalBody">
+            <!-- Log entries will be appended here dynamically -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PRODUCT CATALOG SHOWCASE -->
+    <section class="catalog-section" id="catalogSection" aria-label="Flash Sale Product Catalog">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" id="catalogTitle">Big Sale Day Featured Catalog</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">All items priced in Indian Rupees (₹) with synchronized live inventory counts.</p>
+        </div>
+      </div>
+      <div class="product-grid" id="catalogGrid">
+        <!-- Products generated dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- AUDITED ORDERS LEDGER TABLE -->
+    <section class="orders-section" id="ordersSection" aria-label="Audited Order Ledger">
+      <div class="orders-table-wrapper" id="ordersTableWrapper">
+        <div class="table-header-bar" id="tableHeaderBar">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 700;">Audited Transaction History Ledger</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Every simultaneous attempt, fulfilled order, and blocked race condition record.</p>
+          </div>
+          <div>
+            <button type="button" class="btn-primary" id="exportCsvBtn" style="font-size: 0.85rem; padding: 7px 16px;">
+              📥 Export Orders CSV
+            </button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Final Paid</th>
+                <th>Timestamp</th>
+                <th>Status</th>
+                <th>Notes / Invariant Verification</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                  No orders recorded yet. Launch the simulator above to see live transactions appear here!
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE & TEAM VIVA BREAKDOWN -->
+    <section class="card" id="academicSection" style="margin-bottom: 3.5rem;">
+      <h2 class="card-title" style="margin-bottom: 0.6rem;">🎓 University Architecture & Concurrency Model</h2>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        This web simulator demonstrates the identical concurrent business logic implemented in our pure Java desktop application:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem;">
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px;">
+          <h4 style="color: var(--accent-rose); font-size: 0.95rem; margin-bottom: 6px;">Module 1: Product & Inventory</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);">Encapsulated in <code>Product.java</code> & <code>ProductRepository.java</code>. Formatted in Indian Rupees (₹) using <code>BigDecimal</code>.</p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px;">
+          <h4 style="color: var(--accent-indigo); font-size: 0.95rem; margin-bottom: 6px;">Module 2: Multithreading</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);">Concurrent shoppers implemented via <code>Customer.java (Runnable)</code> and <code>CountDownLatch</code> synchronization barrier.</p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px;">
+          <h4 style="color: var(--accent-emerald); font-size: 0.95rem; margin-bottom: 6px;">Module 3: Synchronized Inventory</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);">Thread-safe monitor in <code>Inventory.java</code> throwing custom <code>OutOfStockException</code> to prevent negative stock.</p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 14px;">
+          <h4 style="color: var(--accent-amber); font-size: 0.95rem; margin-bottom: 6px;">Module 4 & 5: Discounts & Analytics</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);">Polymorphic Strategy pattern (<code>DiscountStrategy</code>) and collection auditing using explicit <code>Iterator</code> traversal.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="mainFooter">
+    <div class="container" style="padding: 0;">
+      <p><b>FLASHDEAL PRO</b> — Object-Oriented Programming (Java) Mini-Project</p>
+      <p style="margin-top: 4px; font-size: 0.78rem;">
+        MNR University • Department of CSE / AIML • Project Assigned #7 • Student Roll No. 35 • Team 7
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
