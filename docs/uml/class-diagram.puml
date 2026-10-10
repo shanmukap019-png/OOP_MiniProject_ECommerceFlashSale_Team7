@@ -1,0 +1,263 @@
+@startuml
+title FLASHDEAL PRO - UML Class Diagram
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam shadowing true
+skinparam linetype ortho
+
+package "com.flashdeal.model" {
+    enum OrderStatus {
+        SUCCESS
+        FAILED
+        OUT_OF_STOCK
+        +getDisplayName(): String
+        +fromString(text: String): OrderStatus
+    }
+
+    class Product {
+        -productId: String
+        -name: String
+        -description: String
+        -category: String
+        -originalPrice: BigDecimal
+        -flashSalePrice: BigDecimal
+        -initialStock: int
+        -availableStock: int
+        -discountPercentage: double
+        -status: String
+        +calculateDiscountPercentage(): void
+        +updateStatus(): void
+        +isAvailable(qty: int): boolean
+        +getFormattedFlashSalePrice(): String
+    }
+
+    class Customer implements java.lang.Runnable {
+        -customerId: String
+        -name: String
+        -email: String
+        -phone: String
+        -startLatch: CountDownLatch
+        -purchaseAction: Runnable
+        +setSimulationContext(latch, action): void
+        +run(): void
+    }
+
+    class Order {
+        -orderId: String
+        -customerId: String
+        -customerName: String
+        -productId: String
+        -productName: String
+        -quantity: int
+        -originalAmount: BigDecimal
+        -discountAmount: BigDecimal
+        -finalAmount: BigDecimal
+        -timestamp: LocalDateTime
+        -status: OrderStatus
+        -failureReason: String
+        +getFormattedFinalAmount(): String
+    }
+
+    class SaleMetric {
+        -productId: String
+        -productName: String
+        -totalAttempts: int
+        -successfulOrders: int
+        -failedOrders: int
+        -unitsSold: int
+        -totalRevenue: BigDecimal
+        -totalDiscounts: BigDecimal
+        +recordAttempt(success, units, rev, disc): void
+        +getSuccessRate(): double
+    }
+}
+
+package "com.flashdeal.inventory" {
+    class OutOfStockException extends java.lang.Exception {
+        -productId: String
+        -requestedQuantity: int
+        -availableQuantity: int
+    }
+
+    class Inventory {
+        -stockMap: Map<String, Integer>
+        -inventoryLock: Object
+        +setStock(productId, stock): void
+        +getStock(productId): int
+        +deductStock(productId, qty): int
+        +restoreStock(productId, qty): int
+        +hasAvailableStock(productId, qty): boolean
+    }
+
+    class InventoryService {
+        -inventory: Inventory
+        -listeners: List<StockChangeListener>
+        +addStockListener(listener): void
+        +getAvailableStock(productId): int
+        +deductStockAtomically(productId, qty): int
+        +setStock(productId, stock): void
+    }
+}
+
+package "com.flashdeal.discount" {
+    interface DiscountStrategy {
+        +calculateDiscount(totalAmount: BigDecimal, quantity: int): BigDecimal
+        +isEligible(totalAmount: BigDecimal, quantity: int): boolean
+        +getCouponCode(): String
+        +getDescription(): String
+        +getMinOrderAmount(): BigDecimal
+        +getMaxDiscountAmount(): BigDecimal
+    }
+
+    abstract class DiscountStrategyBase implements DiscountStrategy {
+        #couponCode: String
+        #description: String
+        #minOrderAmount: BigDecimal
+        #maxDiscountAmount: BigDecimal
+        +isEligible(totalAmount, qty): boolean
+        +calculateDiscount(totalAmount, qty): BigDecimal
+        #{abstract} computeRawDiscount(totalAmount, qty): BigDecimal
+    }
+
+    class PercentageDiscount extends DiscountStrategyBase {
+        -percentage: double
+        #computeRawDiscount(totalAmount, qty): BigDecimal
+    }
+
+    class FlatDiscount extends DiscountStrategyBase {
+        -flatAmount: BigDecimal
+        #computeRawDiscount(totalAmount, qty): BigDecimal
+    }
+
+    class BankOfferDiscount extends DiscountStrategyBase {
+        -partnerBank: String
+        -bankDiscountPercentage: double
+        #computeRawDiscount(totalAmount, qty): BigDecimal
+    }
+
+    class DiscountService {
+        -couponRegistry: Map<String, DiscountStrategy>
+        +registerStrategy(strategy): void
+        +computeDiscount(code, amount, qty): BigDecimal
+        +getStrategy(code): DiscountStrategy
+    }
+}
+
+package "com.flashdeal.concurrency" {
+    interface FlashSaleListener {
+        +onPurchaseAttempt(c: Customer, p: Product, qty: int): void
+        +onPurchaseSuccess(order: Order, remainingStock: int): void
+        +onPurchaseFailed(c: Customer, p: Product, qty: int, reason: String): void
+        +onSimulationProgress(done: int, total: int, stock: int): void
+        +onSimulationComplete(total: int, success: int, failed: int, rev: BigDecimal): void
+    }
+
+    class CustomerPurchaseTask implements java.lang.Runnable {
+        -customer: Customer
+        -product: Product
+        -quantity: int
+        -couponCode: String
+        -flashSaleService: FlashSaleService
+        -startLatch: CountDownLatch
+        -completionLatch: CountDownLatch
+        +run(): void
+    }
+
+    class FlashSaleCoordinator {
+        -flashSaleService: FlashSaleService
+        -isSimulationRunning: AtomicBoolean
+        -threadPool: ExecutorService
+        +startSimulation(p, customers, qty, coupon, listener): void
+    }
+}
+
+package "com.flashdeal.persistence" {
+    class FileStorageService {
+        -dataDirectory: Path
+        -fileLock: Object
+        +readLines(fileName): List<String>
+        +writeLines(fileName, header, lines): void
+        +appendLine(fileName, header, line): void
+    }
+
+    class ProductRepository {
+        -storageService: FileStorageService
+        -productMap: Map<String, Product>
+        -productList: List<Product>
+        +getAllProducts(): List<Product>
+        +findById(id): Product
+        +updateStock(id, newStock): void
+        +saveOrUpdate(product): void
+        +search(query, category): List<Product>
+    }
+
+    class OrderRepository {
+        -storageService: FileStorageService
+        -orderList: List<Order>
+        -orderMap: Map<String, Order>
+        +save(order): void
+        +getAllOrders(): List<Order>
+        +filterOrders(productId, status): List<Order>
+        +calculateSuccessfulRevenue(): BigDecimal
+    }
+
+    class CustomerRepository {
+        -storageService: FileStorageService
+        -customerList: List<Customer>
+        +getAllCustomers(): List<Customer>
+        +getBatch(count): List<Customer>
+    }
+}
+
+package "com.flashdeal.service" {
+    class ProductService {
+        -productRepository: ProductRepository
+        -inventoryService: InventoryService
+        +getAllProducts(): List<Product>
+        +updateStock(id, stock): void
+        +addProduct(id, name, desc, cat, origPrice, salePrice, stock): void
+    }
+
+    class OrderService {
+        -orderRepository: OrderRepository
+        +recordOrder(order): void
+        +getAllOrders(): List<Order>
+        +filterOrders(productId, status): List<Order>
+    }
+
+    class SalesReportService {
+        -orderRepository: OrderRepository
+        -productRepository: ProductRepository
+        -inventoryService: InventoryService
+        +getProductMetrics(): Map<String, SaleMetric>
+        +exportReportToCsv(targetFile): File
+        +getOverallSuccessRate(): double
+    }
+
+    class FlashSaleService {
+        -inventoryService: InventoryService
+        -productService: ProductService
+        -orderService: OrderService
+        -discountService: DiscountService
+        -salesReportService: SalesReportService
+        -saleListener: FlashSaleListener
+        +processPurchase(customer, product, qty, coupon): Order
+    }
+}
+
+' Relationships
+Order --> OrderStatus : has status
+InventoryService o-- Inventory : manages
+FlashSaleService --> InventoryService : calls
+FlashSaleService --> ProductService : calls
+FlashSaleService --> OrderService : calls
+FlashSaleService --> DiscountService : calls
+FlashSaleService --> SalesReportService : calls
+CustomerPurchaseTask --> FlashSaleService : invokes
+FlashSaleCoordinator ..> CustomerPurchaseTask : spawns
+ProductRepository --> FileStorageService : uses
+OrderRepository --> FileStorageService : uses
+ProductService --> ProductRepository : uses
+OrderService --> OrderRepository : uses
+
+@enduml

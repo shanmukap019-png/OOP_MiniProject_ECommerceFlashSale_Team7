@@ -1,0 +1,9 @@
+productId,name,description,category,originalPrice,flashSalePrice,initialStock,availableStock,status
+PROD-101,OnePlus Nord Buds 2 TWS Earbuds,"Active Noise Cancellation 25dB, 12.4mm Dynamic Drivers",Electronics,2999.00,1499.00,25,15,IN_STOCK
+PROD-102,boAt Rockerz 450 Bluetooth Headphones,"40mm drivers, 15 hours playtime, lightweight ergonomic design",Electronics,3990.00,1299.00,15,15,IN_STOCK
+PROD-103,Noise ColorFit Pulse 3 Smartwatch,"1.96-inch TFT display, Bluetooth calling, 100 sports modes",Wearables,4999.00,1799.00,20,20,IN_STOCK
+PROD-104,Xiaomi 20000mAh Power Bank 3i,"18W fast charging, triple output ports, dual input micro-USB/Type-C",Accessories,2199.00,1199.00,30,30,IN_STOCK
+PROD-105,SanDisk Ultra 128GB MicroSDXC Card,"Up to 140MB/s read speed, Class 10, A1 App Performance",Storage,1800.00,749.00,40,40,IN_STOCK
+PROD-106,Logitech B170 Wireless Optical Mouse,"Reliable 2.4GHz wireless connection, 12-month battery life",Computer Accessories,895.00,499.00,50,50,IN_STOCK
+PROD-107,Portronics Ruffpad 8.5E LCD Notepad,Environment-friendly re-writable digital notepad with stylus,Gadgets,999.00,299.00,35,35,IN_STOCK
+PROD-108,Realme 65W SuperDart Fast Charger,"Type-C flash charging adapter, multi-layer safety protection",Mobile Accessories,2499.00,1099.00,18,18,IN_STOCK
