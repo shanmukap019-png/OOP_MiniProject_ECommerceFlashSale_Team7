@@ -30,8 +30,8 @@ public class SalesReportService {
     private final InventoryService inventoryService;
 
     public SalesReportService(OrderRepository orderRepository,
-                              ProductRepository productRepository,
-                              InventoryService inventoryService) {
+            ProductRepository productRepository,
+            InventoryService inventoryService) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.inventoryService = inventoryService;
@@ -44,7 +44,8 @@ public class SalesReportService {
     public int getSuccessfulPurchasesCount() {
         int count = 0;
         for (Order o : orderRepository.getAllOrders()) {
-            if (o.getStatus() == OrderStatus.SUCCESS) count++;
+            if (o.getStatus() == OrderStatus.SUCCESS)
+                count++;
         }
         return count;
     }
@@ -52,7 +53,8 @@ public class SalesReportService {
     public int getFailedPurchasesCount() {
         int count = 0;
         for (Order o : orderRepository.getAllOrders()) {
-            if (o.getStatus() != OrderStatus.SUCCESS) count++;
+            if (o.getStatus() != OrderStatus.SUCCESS)
+                count++;
         }
         return count;
     }
@@ -83,7 +85,8 @@ public class SalesReportService {
 
     public double getOverallSuccessRate() {
         int total = getTotalAttempts();
-        if (total == 0) return 0.0;
+        if (total == 0)
+            return 0.0;
         return ((double) getSuccessfulPurchasesCount() / total) * 100.0;
     }
 
@@ -134,7 +137,8 @@ public class SalesReportService {
     }
 
     /**
-     * Exports the comprehensive sales analytics and product performance to a CSV file.
+     * Exports the comprehensive sales analytics and product performance to a CSV
+     * file.
      */
     public File exportReportToCsv(File targetFile) throws IOException {
         if (targetFile == null) {
@@ -166,14 +170,16 @@ public class SalesReportService {
             writer.write(String.format("Success Rate,%.2f%%", getOverallSuccessRate()));
             writer.newLine();
             Product popular = getMostPopularProduct();
-            writer.write("Most Popular Product," + (popular != null ? FileStorageService.escapeCsvField(popular.getName()) : "N/A"));
+            writer.write("Most Popular Product,"
+                    + (popular != null ? FileStorageService.escapeCsvField(popular.getName()) : "N/A"));
             writer.newLine();
             writer.newLine();
 
             // Product-wise table
             writer.write("PRODUCT PERFORMANCE BREAKDOWN");
             writer.newLine();
-            writer.write("ProductId,ProductName,TotalAttempts,SuccessfulOrders,FailedOrders,UnitsSold,RemainingStock,RevenueINR,DiscountsINR,SuccessRate");
+            writer.write(
+                    "ProductId,ProductName,TotalAttempts,SuccessfulOrders,FailedOrders,UnitsSold,RemainingStock,RevenueINR,DiscountsINR,SuccessRate");
             writer.newLine();
 
             for (SaleMetric m : getProductMetrics().values()) {
@@ -188,8 +194,7 @@ public class SalesReportService {
                         liveStock,
                         m.getTotalRevenue(),
                         m.getTotalDiscounts(),
-                        m.getSuccessRate()
-                ));
+                        m.getSuccessRate()));
                 writer.newLine();
             }
         }

@@ -32,3 +32,5 @@ build_test_data*/
 
 # Antigravity artifacts
 .gemini/
+
+.vercel
