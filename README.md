@@ -4,7 +4,10 @@
 [![Java](https://img.shields.io/badge/Java-JDK_17%2B-ED8B00?logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Swing](https://img.shields.io/badge/GUI-Java_Swing-007396?logo=java&logoColor=white)](https://docs.oracle.com/javase/tutorial/uiswing/)
 [![Concurrency](https://img.shields.io/badge/Concurrency-CountDownLatch_%26_Synchronized-555555)](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html)
+[![Live Demo](https://img.shields.io/badge/Vercel-Live_Simulator-000000?logo=vercel&logoColor=white)](https://flashdeal-pro-simulator.vercel.app)
 [![License](https://img.shields.io/badge/License-Academic_Use_Only-green)](LICENSE)
+
+> 🚀 **Live Interactive Web Demo:** [https://flashdeal-pro-simulator.vercel.app](https://flashdeal-pro-simulator.vercel.app)
 
 ---
 
