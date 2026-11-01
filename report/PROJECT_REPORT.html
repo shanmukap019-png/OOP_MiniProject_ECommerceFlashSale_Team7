@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MNR University - Mini Project Report - FLASHDEAL PRO</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 20mm 20mm 20mm;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #111;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 20px 0;
+    }
+    .page {
+      background: white;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 25mm 20mm 20mm 20mm;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
+      position: relative;
+    }
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        min-height: 100vh;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    .print-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #1e293b;
+      color: white;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .print-btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .print-btn:hover {
+      background: #2563eb;
+    }
+    .center {
+      text-align: center;
+    }
+    h1, h2, h3, h4 {
+      font-weight: bold;
+      color: #000;
+      margin: 0 0 10px 0;
+    }
+    h1 { font-size: 18pt; text-transform: uppercase; }
+    h2 { font-size: 15pt; }
+    h3 { font-size: 13pt; }
+    h4 { font-size: 12pt; }
+    p {
+      margin: 0 0 10px 0;
+      text-align: justify;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 10.5pt;
+    }
+    table, th, td {
+      border: 1px solid #333;
+    }
+    th, td {
+      padding: 6px 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      font-weight: bold;
+    }
+    code, pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9.5pt;
+    }
+    pre {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    .page-footer {
+      position: absolute;
+      bottom: 15mm;
+      left: 20mm;
+      right: 20mm;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 5px;
+    }
+    .figure-container {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .figure-img {
+      max-width: 95%;
+      height: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+    }
+    .figure-caption {
+      font-size: 10pt;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar no-print">
+    <div>
+      <strong>FLASHDEAL PRO: E-Commerce Flash Sale Simulator</strong> — Official Academic Report (MNR University)
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <!-- PAGE 1: TITLE PAGE -->
+  <div class="page center">
+    <br><br>
+    <h1>MNR UNIVERSITY</h1>
+    <h3>School of Engineering & Technology (SOET)</h3>
+    <h4>Department of Computer Science and Engineering</h4>
+    <br><br><br>
+    <h2>MINI PROJECT REPORT</h2>
+    <p style="text-align: center; font-size: 12pt;">on</p>
+    <h2 style="font-size: 16pt; color: #1e3a8a;">FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR</h2>
+    <p style="text-align: center; font-style: italic;">(Java Programming Implementation-Based Mini-Project)</p>
+    <br>
+    <p style="text-align: center;"><strong>Course:</strong> Object Oriented Programming (Java)<br>
+    <strong>B.Tech</strong> – Computer Science and Engineering (CSE / AIML)<br>
+    <strong>Assigned Project Number:</strong> 7</p>
+    <br><br>
+    <h3 style="font-size: 12pt;">Submitted by</h3>
+    <table style="width: 85%; margin: 0 auto;">
+      <thead>
+        <tr>
+          <th style="text-align: center; width: 15%;">S.No</th>
+          <th>Student Name</th>
+          <th style="text-align: center; width: 30%;">Roll Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td><strong>Shanmukhi</strong> (Lead)</td>
+          <td style="text-align: center;"><strong>35</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td>[Team Member 2 Name]</td>
+          <td style="text-align: center;">[Roll No. --]</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td>[Team Member 3 Name]</td>
+          <td style="text-align: center;">[Roll No. --]</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td>[Team Member 4 Name]</td>
+          <td style="text-align: center;">[Roll No. --]</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td>[Team Member 5 Name]</td>
+          <td style="text-align: center;">[Roll No. --]</td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br><br>
+    <p style="text-align: center;"><strong>Under the guidance of</strong><br>
+    <strong>[Faculty Name]</strong>, Lecturer, Department of CSE<br>
+    School of Engineering & Technology, MNR University</p>
+    <br>
+    <p style="text-align: center; font-weight: bold;">Academic Year 2026 – 2027</p>
+  </div>
+
+  <!-- PAGE 2: CERTIFICATE & DECLARATION -->
+  <div class="page">
+    <div class="center">
+      <h2>CERTIFICATE</h2>
+    </div>
+    <br>
+    <p>This is to certify that the mini project report titled <strong>“FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR”</strong> is a bonafide record of the work carried out by the students listed on the title page, in partial fulfilment of the requirements of the course <strong>Object Oriented Programming (Java)</strong>, <strong>B.Tech – Computer Science and Engineering</strong>, Department of Computer Science and Engineering, School of Engineering & Technology, <strong>MNR University</strong>, during the academic year 2026–2027.</p>
+    <br><br><br><br>
+    <table style="border: none; margin-top: 40px;">
+      <tr style="border: none;">
+        <td style="border: none; width: 50%;"><strong>Faculty Guide</strong></td>
+        <td style="border: none; width: 50%; text-align: right;"><strong>Dean, School of Engineering & Technology</strong></td>
+      </tr>
+    </table>
+    <br><br>
+    <p><strong>Date:</strong> ________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Place:</strong> ________________</p>
+    <br><hr><br>
+    <div class="center">
+      <h2>DECLARATION</h2>
+    </div>
+    <br>
+    <p>We hereby declare that this mini project report is the result of our own work. The program was written, executed, and tested by us. Any help, book, or website used has been mentioned in the references.</p>
+    <br><br>
+    <p><strong>Signature of the Students:</strong></p>
+    <p>1. _________________________________ (Shanmukhi, Roll No: 35)</p>
+    <p>2. _________________________________ ([Team Member 2 Name])</p>
+    <p>3. _________________________________ ([Team Member 3 Name])</p>
+    <p>4. _________________________________ ([Team Member 4 Name])</p>
+    <p>5. _________________________________ ([Team Member 5 Name])</p>
+  </div>
+
+  <!-- PAGE 3: CONTENTS -->
+  <div class="page">
+    <div class="center">
+      <h2>CONTENTS</h2>
+    </div>
+    <br>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 15%; text-align: center;">Chapter</th>
+          <th>Title</th>
+          <th style="width: 15%; text-align: center;">Page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="text-align: center;"><strong>1</strong></td><td><strong>Aim and Abstract</strong></td><td style="text-align: center;">1</td></tr>
+        <tr><td style="text-align: center;"><strong>2</strong></td><td><strong>Introduction and Problem Statement</strong></td><td style="text-align: center;">1</td></tr>
+        <tr><td style="text-align: center;"><strong>3</strong></td><td><strong>Objectives</strong></td><td style="text-align: center;">1</td></tr>
+        <tr><td style="text-align: center;"><strong>4</strong></td><td><strong>Requirements</strong></td><td style="text-align: center;">2</td></tr>
+        <tr><td style="text-align: center;"><strong>5</strong></td><td><strong>Class Design</strong></td><td style="text-align: center;">2</td></tr>
+        <tr><td style="text-align: center;"><strong>6</strong></td><td><strong>Java Concepts Used</strong></td><td style="text-align: center;">3</td></tr>
+        <tr><td style="text-align: center;"><strong>7</strong></td><td><strong>Program Logic (Algorithm)</strong></td><td style="text-align: center;">4</td></tr>
+        <tr><td style="text-align: center;"><strong>8</strong></td><td><strong>Implementation</strong></td><td style="text-align: center;">4</td></tr>
+        <tr><td style="text-align: center;"><strong>9</strong></td><td><strong>Output Screenshots</strong></td><td style="text-align: center;">5</td></tr>
+        <tr><td style="text-align: center;"><strong>10</strong></td><td><strong>Test Cases</strong></td><td style="text-align: center;">5</td></tr>
+        <tr><td style="text-align: center;"><strong>11</strong></td><td><strong>Results and Discussion</strong></td><td style="text-align: center;">6</td></tr>
+        <tr><td style="text-align: center;"><strong>12</strong></td><td><strong>Conclusion</strong></td><td style="text-align: center;">6</td></tr>
+        <tr><td style="text-align: center;"><strong>13</strong></td><td><strong>References</strong></td><td style="text-align: center;">6</td></tr>
+        <tr><td style="text-align: center;"><strong>A</strong></td><td><strong>Appendix A – Complete Source Code & Repository</strong></td><td style="text-align: center;">7</td></tr>
+        <tr><td style="text-align: center;"><strong>B</strong></td><td><strong>Appendix B – Team Contribution</strong></td><td style="text-align: center;">7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAGE 4: CHAPTERS 1, 2, 3 -->
+  <div class="page">
+    <h2>CHAPTER 1: AIM AND ABSTRACT</h2>
+    <h3>1.1 Aim</h3>
+    <p>To design and develop <strong>FLASHDEAL PRO: E-Commerce Flash Sale Simulator</strong> in Java using Object Oriented Programming concepts, so that limited promotional inventory can be stored, searched, atomically updated, and processed concurrently under extreme shopping rush without race conditions, overselling, or negative stock.</p>
+
+    <h3>1.2 Abstract</h3>
+    <p>This project is an advanced e-commerce flash sale simulation desktop application developed in Java Swing. It is used to emulate high-velocity "Big Sale Day" flash events where hundreds of customers compete simultaneously for limited stock items. The program uses classes and objects, encapsulation, inheritance, abstract classes, interfaces, custom checked exceptions (<code>OutOfStockException</code>), multithreading (<code>Thread</code>, <code>Runnable</code>), thread synchronization barriers (<code>CountDownLatch</code>), monitor locking (<code>synchronized</code>), and the Java Collections Framework (<code>LinkedHashMap</code>, <code>ArrayList</code>, <code>Iterator</code>). Transaction records and catalog data are persistently stored using standard RFC-4180 compliant CSV files with atomic stream locks.</p>
+
+    <br>
+    <h2>CHAPTER 2: INTRODUCTION AND PROBLEM STATEMENT</h2>
+    <h3>2.1 Introduction</h3>
+    <p>In modern e-commerce ecosystems during mega-sales events (such as Flipkart Big Billion Days, Amazon Great Indian Festival, or limited-quantity product drops), thousands of shoppers click "Buy Now" at the exact same second. A robust software architecture is critical to guarantee data consistency and fairness under sudden concurrency spikes. Java is particularly well-suited for this domain because it is object-oriented, strictly typed, platform-independent, and provides built-in enterprise-grade concurrency utilities (<code>java.util.concurrent</code>), atomic synchronization primitives, and powerful data structures such as <code>LinkedHashMap</code> and <code>ArrayList</code>.</p>
+
+    <h3>2.2 Problem Statement</h3>
+    <p>In traditional or uncoordinated systems, when multiple threads access and update shared inventory variables at the same instant, critical section race conditions occur: multiple customer threads read <code>stock = 1</code> simultaneously and approve purchases, leaving inventory negative (<code>stock = -49</code>), double-selling units to multiple distinct customers, and crashing the user interface.</p>
+
+    <h3>2.3 Proposed Solution</h3>
+    <p>The proposed Java application addresses these challenges through:</p>
+    <ul>
+      <li><strong>Add and store records:</strong> Maintain a structured catalog of consumer electronics products in Indian Rupees (₹).</li>
+      <li><strong>Search and update records:</strong> Search products dynamically by keyword, filter by category, and adjust inventory levels in real time.</li>
+      <li><strong>Perform atomic purchase operations:</strong> Encapsulate check-and-decrement inventory operations within a <code>synchronized</code> critical section.</li>
+      <li><strong>Simulate concurrent shoppers:</strong> Launch up to 500 competing customer threads simultaneously using a <code>CountDownLatch(1)</code> release barrier.</li>
+      <li><strong>Display real-time visual reports:</strong> Render executive KPI cards, high-contrast live activity logging, and audited transaction ledgers in a responsive Swing GUI.</li>
+      <li><strong>Save data permanently:</strong> Store products, customers, and order history using thread-safe CSV file I/O.</li>
+    </ul>
+
+    <br>
+    <h2>CHAPTER 3: OBJECTIVES</h2>
+    <p>The objectives of this project are:</p>
+    <ul>
+      <li>To apply classes, objects, constructors, and methods in structuring domain models (<code>Product</code>, <code>Customer</code>, <code>Order</code>, <code>SaleMetric</code>).</li>
+      <li>To apply encapsulation using private data members with defensive validation getters and setters.</li>
+      <li>To apply inheritance and method overriding using an abstract base class (<code>DiscountStrategyBase</code>) extended by concrete promotional strategies (<code>PercentageDiscount</code>, <code>FlatDiscount</code>, <code>BankOfferDiscount</code>).</li>
+      <li>To use abstract classes and interfaces (<code>DiscountStrategy</code>, <code>FlashSaleListener</code>, <code>Runnable</code>, <code>StockChangeListener</code>).</li>
+      <li>To handle errors using robust exception handling, including a user-defined checked exception (<code>OutOfStockException</code>).</li>
+      <li>To store and process data using the Java Collections Framework (<code>LinkedHashMap</code>, <code>ArrayList</code>, and explicit <code>Iterator&lt;Order&gt;</code> traversal).</li>
+      <li>To execute multi-threaded concurrent simulations using <code>Thread</code>, <code>Runnable</code>, <code>ExecutorService</code>, and <code>CountDownLatch</code>.</li>
+      <li>To save data permanently using standard File I/O (<code>BufferedReader</code>, <code>BufferedWriter</code>, CSV parsing).</li>
+      <li>To organise the program into modular packages and verify all invariants with 15 automated test cases.</li>
+    </ul>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 1</span></div>
+  </div>
+
+  <!-- PAGE 5: CHAPTERS 4 & 5 -->
+  <div class="page">
+    <h2>CHAPTER 4: REQUIREMENTS</h2>
+    <h3>4.1 Functional Requirements</h3>
+    <p>The program should be able to:</p>
+    <ul>
+      <li>Add and browse product records with dual pricing in ₹ and dynamic discount badges.</li>
+      <li>Search and filter products by name and category (Smartphones, Audio, Wearables, Accessories).</li>
+      <li>Update and reset product stock levels for demonstration purposes.</li>
+      <li>Execute concurrent flash sale simulations (Core Operation) with 1 to 500 simultaneous customer threads.</li>
+      <li>Enforce atomic check-and-decrement stock deduction without overselling.</li>
+      <li>Apply polymorphic promotional coupons (<code>SAVE10</code>, <code>FLAT100</code>, <code>BANK15</code>) with threshold limits.</li>
+      <li>Display executive KPI summary cards, filterable order history, and product analytics reports.</li>
+      <li>Show clear informative error messages for invalid quantities, coupon rejections, and out-of-stock events.</li>
+    </ul>
+
+    <h3>4.2 Input and Output</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Input</th>
+          <th>Java Data Type</th>
+          <th>Validation</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Product Selection</strong></td>
+          <td><code>String</code> (ID)</td>
+          <td>Must match existing product ID in repository</td>
+          <td>Selected product preview and live stock updated</td>
+        </tr>
+        <tr>
+          <td><strong>Customer Count</strong></td>
+          <td><code>int</code></td>
+          <td>Range: <code>1</code> to <code>500</code> (positive integer)</td>
+          <td>Worker threads spawned in pool</td>
+        </tr>
+        <tr>
+          <td><strong>Units per Customer</strong></td>
+          <td><code>int</code></td>
+          <td>Range: <code>1</code> to <code>10</code> (strictly > 0)</td>
+          <td>Quantity requested per purchase task</td>
+        </tr>
+        <tr>
+          <td><strong>Coupon Code</strong></td>
+          <td><code>String</code></td>
+          <td>Optional; validated against coupon registry</td>
+          <td>Applied discount amount in ₹ (or ₹0.00)</td>
+        </tr>
+        <tr>
+          <td><strong>Demo Stock Reset</strong></td>
+          <td><code>int</code></td>
+          <td>Non-negative integer (>= 0)</td>
+          <td>Available stock updated in memory and CSV</td>
+        </tr>
+        <tr>
+          <td><strong>Order Filter</strong></td>
+          <td><code>String</code> / <code>Enum</code></td>
+          <td>Valid text or status (<code>SUCCESS</code>, <code>OUT_OF_STOCK</code>)</td>
+          <td>Filtered table of audited customer orders</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.3 Software and Hardware Requirements</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%;">Item</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Programming Language</strong></td><td>Java (JDK 17 LTS or later, tested up to JDK 26)</td></tr>
+        <tr><td><strong>Development Tools / IDE</strong></td><td>VS Code / IntelliJ IDEA / Eclipse, PowerShell, Git</td></tr>
+        <tr><td><strong>User Interface</strong></td><td>Java Swing & AWT (Desktop GUI) + Responsive HTML/CSS/JS (Web Showcase)</td></tr>
+        <tr><td><strong>Storage</strong></td><td>Plain-text CSV files (<code>products.csv</code>, <code>orders.csv</code>, <code>customers.csv</code>) with UTF-8 encoding</td></tr>
+        <tr><td><strong>Concurrency API</strong></td><td><code>java.util.concurrent</code> (<code>CountDownLatch</code>, <code>ExecutorService</code>, <code>synchronized</code>)</td></tr>
+        <tr><td><strong>Operating System</strong></td><td>Windows 10 / 11, Linux, or macOS</td></tr>
+        <tr><td><strong>Hardware Requirements</strong></td><td>Dual-core CPU 2.0 GHz or higher, 4 GB RAM minimum (8 GB recommended), 200 MB disk space</td></tr>
+      </tbody>
+    </table>
+
+    <br>
+    <h2>CHAPTER 5: CLASS DESIGN</h2>
+    <h3>5.1 List of Classes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 28%;">Class / Interface</th>
+          <th style="width: 25%;">Type</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Main</code></td><td>Driver Class</td><td>Bootstrap; sets Look-and-Feel and launches <code>MainFrame</code> on EDT.</td></tr>
+        <tr><td><code>Product</code></td><td>Domain Entity</td><td>Encapsulates pricing in ₹, inventory status transitions, and discount math.</td></tr>
+        <tr><td><code>Customer</code></td><td>Class (implements <code>Runnable</code>)</td><td>Customer profile capable of executing purchase tasks in concurrent threads.</td></tr>
+        <tr><td><code>Order</code></td><td>Domain Entity</td><td>Immutable transaction audit record with status, discounts, and timestamp.</td></tr>
+        <tr><td><code>OrderStatus</code></td><td><code>enum</code></td><td>Order states: <code>SUCCESS</code>, <code>OUT_OF_STOCK</code>, <code>FAILED</code>.</td></tr>
+        <tr><td><code>Inventory</code></td><td>Thread-Safe Monitor</td><td>Encapsulates monitor lock for atomic stock deduction and restoration.</td></tr>
+        <tr><td><code>OutOfStockException</code></td><td>User-Defined Exception</td><td>Custom checked exception thrown when requested units exceed stock.</td></tr>
+        <tr><td><code>DiscountStrategy</code></td><td>Interface</td><td>Standard contract for promotional algorithms.</td></tr>
+        <tr><td><code>DiscountStrategyBase</code></td><td>Abstract Class</td><td>Template method base enforcing order thresholds and discount caps.</td></tr>
+        <tr><td><code>PercentageDiscount</code></td><td>Class (extends Base)</td><td>Calculates % discount with maximum ceiling (e.g., <code>SAVE10</code>).</td></tr>
+        <tr><td><code>FlatDiscount</code></td><td>Class (extends Base)</td><td>Calculates flat rupee discount on eligible orders (e.g., <code>FLAT100</code>).</td></tr>
+        <tr><td><code>BankOfferDiscount</code></td><td>Class (extends Base)</td><td>Calculates instant card discount with savings limit (e.g., <code>BANK15</code>).</td></tr>
+        <tr><td><code>FlashSaleCoordinator</code></td><td>Concurrency Manager</td><td>Spawns thread pool and coordinates simultaneous <code>CountDownLatch</code> rush.</td></tr>
+        <tr><td><code>FlashSaleService</code></td><td>Core Service</td><td>Transaction controller linking inventory, discounts, and order repository.</td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 2</span></div>
+  </div>
+
+  <!-- PAGE 6: CHAPTERS 5.2, 5.3, 6 -->
+  <div class="page">
+    <h3>5.2 Data Members and Methods of Main Classes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Class</th>
+          <th>Details (Data Members, Constructors, and Methods)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Product</strong></td>
+          <td>
+            <strong>Data members:</strong> <code>productId, name, description, category, originalPrice, flashSalePrice, initialStock, availableStock, status</code><br>
+            <strong>Constructors:</strong> Parameterized constructor with validation.<br>
+            <strong>Methods:</strong> <code>getProductId(), getAvailableStock(), setAvailableStock(), calculateDiscountPercentage(), toCsvRow()</code>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Inventory</strong></td>
+          <td>
+            <strong>Data members:</strong> <code>stockMap (Map&lt;String, Integer&gt;), inventoryLock (Object)</code><br>
+            <strong>Constructors:</strong> <code>Inventory(Map&lt;String, Integer&gt; initialStock)</code><br>
+            <strong>Methods:</strong> <code>deductStock(id, qty), restoreStock(id, qty), getStock(id), setStock(id, qty), getAllStockSnapshot()</code>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>DiscountStrategyBase</strong></td>
+          <td>
+            <strong>Data members:</strong> <code>couponCode, description, minimumOrderAmount, maxDiscountAmount</code><br>
+            <strong>Constructors:</strong> Parameterized base constructor.<br>
+            <strong>Methods:</strong> <code>calculateDiscount(total, qty) (Template Method), computeRawDiscount(total, qty) (Abstract)</code>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>FlashSaleCoordinator</strong></td>
+          <td>
+            <strong>Data members:</strong> <code>flashSaleService, listeners, threadPool, isRunning</code><br>
+            <strong>Constructors:</strong> <code>FlashSaleCoordinator(FlashSaleService service)</code><br>
+            <strong>Methods:</strong> <code>startSimulation(prodId, count, qty, coupon, customers), addListener(), isRunning()</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5.3 Relationships Between Classes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Classes</th>
+          <th style="width: 22%;">Relationship</th>
+          <th>Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>DiscountStrategyBase – PercentageDiscount</code></td><td>Inheritance (IS-A)</td><td><code>PercentageDiscount</code> extends <code>DiscountStrategyBase</code> and overrides <code>computeRawDiscount()</code>.</td></tr>
+        <tr><td><code>DiscountStrategy – DiscountStrategyBase</code></td><td>Implements</td><td><code>DiscountStrategyBase</code> implements the <code>DiscountStrategy</code> interface contract.</td></tr>
+        <tr><td><code>Customer – Runnable</code></td><td>Implements</td><td><code>Customer</code> implements <code>Runnable</code> to execute purchase tasks concurrently.</td></tr>
+        <tr><td><code>CustomerPurchaseTask – Runnable</code></td><td>Implements</td><td><code>CustomerPurchaseTask</code> implements <code>Runnable</code> to race at the <code>CountDownLatch</code>.</td></tr>
+        <tr><td><code>InventoryService – Inventory</code></td><td>Composition (HAS-A)</td><td><code>InventoryService</code> owns and manages the thread-safe <code>Inventory</code> monitor.</td></tr>
+        <tr><td><code>OrderRepository – Order</code></td><td>Aggregation (HAS-A)</td><td><code>OrderRepository</code> manages a collection of <code>Order</code>s and traverses via <code>Iterator&lt;Order&gt;</code>.</td></tr>
+      </tbody>
+    </table>
+
+    <br>
+    <h2>CHAPTER 6: JAVA CONCEPTS USED</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 38%;">Java Concept</th>
+          <th>Where Used (Class / Method)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Classes, objects and constructors</strong></td><td><code>Product</code>, <code>Customer</code>, <code>Order</code>, <code>SaleMetric</code> (Constructors initialize state)</td></tr>
+        <tr><td><strong>Encapsulation (private, getters, setters)</strong></td><td><code>Product.getAvailableStock()</code>, <code>Product.setAvailableStock()</code>, <code>Order.getFinalAmount()</code></td></tr>
+        <tr><td><strong>Inheritance and super keyword</strong></td><td><code>PercentageDiscount</code>, <code>FlatDiscount</code> calling <code>super(...)</code> in <code>DiscountStrategyBase</code></td></tr>
+        <tr><td><strong>Method overloading</strong></td><td><code>ProductService.searchProducts(query)</code> and <code>searchProducts(query, category)</code></td></tr>
+        <tr><td><strong>Method overriding</strong></td><td><code>PercentageDiscount.computeRawDiscount()</code>, <code>BadgeRenderer.getTableCellRendererComponent()</code></td></tr>
+        <tr><td><strong>Abstract class / interface</strong></td><td>Abstract class <code>DiscountStrategyBase</code>; Interfaces: <code>DiscountStrategy</code>, <code>FlashSaleListener</code>, <code>Runnable</code></td></tr>
+        <tr><td><strong>Packages</strong></td><td>10 packages: <code>com.flashdeal.app</code>, <code>model</code>, <code>inventory</code>, <code>discount</code>, <code>concurrency</code>, <code>service</code>, etc.</td></tr>
+        <tr><td><strong>static and final keywords</strong></td><td><code>CurrencyUtil.formatINR()</code>, <code>ValidationUtil.validatePositive()</code>, <code>private final Object inventoryLock</code></td></tr>
+        <tr><td><strong>Exception handling</strong></td><td>User-defined checked <code>OutOfStockException</code>; <code>try-with-resources</code> in <code>FileStorageService</code></td></tr>
+        <tr><td><strong>Collections (ArrayList, HashMap)</strong></td><td><code>LinkedHashMap</code> in <code>Inventory</code>, <code>ArrayList&lt;Order&gt;</code> in <code>OrderRepository</code>, <code>HashMap</code> in <code>DiscountService</code></td></tr>
+        <tr><td><strong>Collection Traversal (Iterator)</strong></td><td>Explicit <code>Iterator&lt;Order&gt;</code> in <code>OrderRepository.calculateSuccessfulRevenue()</code> and order filtering</td></tr>
+        <tr><td><strong>Multithreading (Thread / Runnable)</strong></td><td><code>CustomerPurchaseTask implements Runnable</code>, <code>ExecutorService</code> thread pool, <code>SwingUtilities.invokeLater</code></td></tr>
+        <tr><td><strong>File I/O or JDBC</strong></td><td><code>BufferedReader</code>, <code>BufferedWriter</code>, UTF-8 CSV streams in <code>FileStorageService</code></td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 3</span></div>
+  </div>
+
+  <!-- PAGE 7: CHAPTERS 7 & 8 -->
+  <div class="page">
+    <h2>CHAPTER 7: PROGRAM LOGIC (ALGORITHM)</h2>
+    <h3>7.1 Main Program Flow</h3>
+    <ol>
+      <li><strong>Start the program:</strong> <code>Main.java</code> executes and configures the modern UI Look-and-Feel.</li>
+      <li><strong>Load saved data into collection:</strong> Load CSV records into memory (<code>products.csv</code>, <code>customers.csv</code>, <code>orders.csv</code>).</li>
+      <li><strong>Display the main menu:</strong> Launch <code>MainFrame</code> with sidebar navigation and show the Executive Dashboard.</li>
+      <li><strong>Read the user's choice:</strong> User selects one of the operational panels (Catalog, Simulator, Order History, Reports).</li>
+      <li><strong>Configure flash sale simulation:</strong> User selects product, configures customer count (1–500), units, and coupon code.</li>
+      <li><strong>Perform the operation:</strong> <code>FlashSaleCoordinator</code> spawns concurrent threads, releases <code>CountDownLatch</code>, and executes atomic purchases.</li>
+      <li><strong>Validate and handle exceptions:</strong> Stock checked inside <code>synchronized (inventoryLock)</code>; throws <code>OutOfStockException</code> if exhausted.</li>
+      <li><strong>Save data to file:</strong> Append executed transactions atomically to <code>orders.csv</code> and update product stock in <code>products.csv</code>.</li>
+      <li><strong>Repeat until user selects Exit / Stop.</strong></li>
+    </ol>
+
+    <h3>7.2 Algorithm for the Core Operation (Atomic Stock Deduction)</h3>
+    <ol>
+      <li><strong>Validate inputs:</strong> Verify that customer ID, product ID, and requested quantity (> 0) are valid.</li>
+      <li><strong>Acquire monitor lock:</strong> Enter <code>synchronized (inventoryLock)</code> critical section.</li>
+      <li><strong>Check availability:</strong> If <code>currentStock &lt; requestedQuantity</code>, throw <code>OutOfStockException</code>.</li>
+      <li><strong>Decrement stock atomically:</strong> Deduct requested units: <code>remainingStock = currentStock - requestedQuantity</code> and update map.</li>
+      <li><strong>Exit lock & calculate discount:</strong> Evaluate coupon strategy via <code>calculateDiscount(total, qty)</code>.</li>
+      <li><strong>Record transaction:</strong> Create <code>Order</code> with status <code>SUCCESS</code> (or <code>OUT_OF_STOCK</code> if exception caught), persist to CSV, and notify UI listeners.</li>
+    </ol>
+
+    <br>
+    <h2>CHAPTER 8: IMPLEMENTATION</h2>
+    <h3>8.1 Project Structure</h3>
+    <pre>
+OOP_MiniProject_ECommerceFlashSale_Team7/
+├── src/main/java/com/flashdeal/
+│   ├── app/Main.java                         # Driver class & UI bootstrap
+│   ├── model/ (Product, Customer, Order, OrderStatus, SaleMetric)
+│   ├── inventory/ (Inventory, InventoryService, OutOfStockException)
+│   ├── discount/ (DiscountStrategy, DiscountStrategyBase, Percentage, Flat, Bank)
+│   ├── concurrency/ (CustomerPurchaseTask, FlashSaleCoordinator, FlashSaleListener)
+│   ├── service/ (ProductService, OrderService, SalesReportService, FlashSaleService)
+│   ├── persistence/ (FileStorageService, ProductRepository, OrderRepository, CustomerRepo)
+│   ├── ui/ (MainFrame, DashboardPanel, ProductPanel, FlashSalePanel, OrderHistoryPanel, ReportsPanel)
+│   └── util/ (CurrencyUtil, ValidationUtil, DateUtil, UmlDiagramRenderer)
+├── data/ (products.csv, orders.csv, customers.csv)
+└── test/FlashSaleTestSuite.java              # 15 automated concurrency & unit tests</pre>
+
+    <h3>8.2 Key Classes and Code</h3>
+    <p><strong>Class: <code>Inventory</code></strong> | <em>Purpose: Thread-safe monitor ensuring atomic check-and-decrement stock operations</em></p>
+    <pre>
+public int deductStock(String productId, int requestedQuantity) throws OutOfStockException {
+    if (requestedQuantity &lt;= 0) throw new IllegalArgumentException("Quantity must be positive.");
+    synchronized (inventoryLock) {
+        int currentStock = stockMap.getOrDefault(productId, 0);
+        if (currentStock &lt; requestedQuantity) {
+            throw new OutOfStockException(productId, requestedQuantity, currentStock);
+        }
+        int remainingStock = currentStock - requestedQuantity;
+        stockMap.put(productId, remainingStock);
+        return remainingStock;
+    }
+}</pre>
+
+    <p><strong>Class: <code>FlashSaleCoordinator</code></strong> | <em>Purpose: Multi-threaded start barrier releasing concurrent shoppers simultaneously</em></p>
+    <pre>
+CountDownLatch startLatch = new CountDownLatch(1);
+CountDownLatch completionLatch = new CountDownLatch(totalCustomers);
+for (Customer customer : customers) {
+    threadPool.submit(new CustomerPurchaseTask(
+        customer, product, unitsPerCust, couponCode, flashSaleService, startLatch, completionLatch
+    ));
+}
+startLatch.countDown(); // Barrier lifted: all customer threads race simultaneously
+completionLatch.await(30, TimeUnit.SECONDS);</pre>
+
+    <h3>8.3 Exceptions, Collections and Threads</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Concept</th>
+          <th style="width: 30%;">Used In</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>User-defined exception</strong></td><td><code>OutOfStockException</code></td><td>Thrown when stock is exhausted; caught gracefully to record failed order.</td></tr>
+        <tr><td><strong>Built-in exception</strong></td><td><code>IllegalArgumentException</code></td><td>Enforces positive purchase quantities and non-empty inputs.</td></tr>
+        <tr><td><strong>Collection</strong></td><td><code>LinkedHashMap&lt;String, Integer&gt;</code></td><td>Maintains thread-safe inventory map with O(1) lookups.</td></tr>
+        <tr><td><strong>Thread</strong></td><td><code>CustomerPurchaseTask</code></td><td>Background concurrency worker executing purchases at start barrier.</td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 4</span></div>
+  </div>
+
+  <!-- PAGE 8: CHAPTERS 9 & 10 -->
+  <div class="page">
+    <h2>CHAPTER 9: OUTPUT SCREENSHOTS</h2>
+    <div class="figure-container">
+      <img src="../screenshots/01_dashboard.png" class="figure-img" alt="Figure 9.1: Main Menu & Dashboard">
+      <div class="figure-caption">Figure 9.1: Main Menu & Executive Dashboard (KPI Metrics & Recent Orders)</div>
+    </div>
+    <div class="figure-container">
+      <img src="../screenshots/03_simulator.png" class="figure-img" alt="Figure 9.2: Flash Sale Simulator">
+      <div class="figure-caption">Figure 9.2: Core Operation – Flash Sale Simulator Running with 50 Concurrent Customer Threads</div>
+    </div>
+    <div class="figure-container">
+      <img src="../screenshots/04_order_history.png" class="figure-img" alt="Figure 9.3: Order History Ledger">
+      <div class="figure-caption">Figure 9.3: Order History Ledger showing OutOfStockException Handling and Status Badges</div>
+    </div>
+
+    <br>
+    <h2>CHAPTER 10: TEST CASES</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 8%; text-align: center;">ID</th>
+          <th style="width: 28%;">Test Scenario</th>
+          <th style="width: 20%;">Input</th>
+          <th>Expected Result</th>
+          <th style="width: 12%; text-align: center;">Pass / Fail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="text-align: center;"><strong>T1</strong></td><td>Add valid purchase</td><td>Stock = 10, buy 2</td><td>Stock = 8, order recorded</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T2</strong></td><td>Insufficient stock</td><td>Stock = 2, buy 5</td><td><code>OutOfStockException</code> thrown</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T3</strong></td><td>Non-negative inventory</td><td>Stock = 3, buy 10</td><td>Stock remains 3 (never negative)</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T4</strong></td><td><strong>Concurrent Race Test</strong></td><td><strong>50 threads, Stock = 10</strong></td><td><strong>Exactly 10 SUCCESS, 40 BLOCKED, Stock = 0</strong></td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T5</strong></td><td>Invalid quantity</td><td>Quantity = 0 or -3</td><td><code>IllegalArgumentException</code> thrown</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T6</strong></td><td>Percentage discount</td><td>Amount = ₹2000, <code>SAVE10</code></td><td>₹200.00 discount applied</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T7</strong></td><td>Flat discount</td><td>Amount = ₹1500, <code>FLAT100</code></td><td>₹100.00 flat discount applied</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T8</strong></td><td>Bank offer discount</td><td>Amount = ₹3000, <code>BANK15</code></td><td>₹450.00 card discount applied</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T9</strong></td><td>Invalid coupon</td><td>Code = <code>"INVALID"</code></td><td>₹0.00 discount (no failure)</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T10</strong></td><td>Successful order audit</td><td>Valid purchase</td><td>Order status = <code>SUCCESS</code></td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T11</strong></td><td>Failed order audit</td><td>Stock depleted</td><td>Order status = <code>OUT_OF_STOCK</code></td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T12</strong></td><td>Revenue consistency</td><td>10 success + 40 failed</td><td>Revenue sums only success orders</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T13</strong></td><td>CSV persistence</td><td>Save order & product</td><td>RFC-4180 CSV written cleanly</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T14</strong></td><td>Restart inventory reload</td><td>Mutate stock & reload</td><td>Persisted stock matches reload</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T15</strong></td><td>CSV report export</td><td>Export analytics audit</td><td>CSV file generated on disk</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 5</span></div>
+  </div>
+
+  <!-- PAGE 9: CHAPTERS 11, 12, 13 -->
+  <div class="page">
+    <h2>CHAPTER 11: RESULTS AND DISCUSSION</h2>
+    <h3>11.1 Results</h3>
+    <p>The program works correctly for all the operations listed above. Under extreme concurrency stress testing (50 concurrent shopper threads simultaneously competing for 10 physical stock units), the application achieved 100% data consistency: exactly 10 units were sold, exactly 40 out-of-stock attempts were blocked, and available inventory dropped strictly to 0 without ever going negative or double-selling.</p>
+
+    <h3>11.2 Challenges Faced</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 45%;">Problem</th>
+          <th>Solution in Java</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Race conditions in inventory deduction</td><td>Encapsulated availability check & decrement in <code>synchronized (inventoryLock)</code>.</td></tr>
+        <tr><td>Worker threads freezing Swing GUI</td><td>Decoupled simulation threads from EDT using <code>SwingUtilities.invokeLater</code>.</td></tr>
+        <tr><td>Negative payable totals with coupons</td><td>Enforced <code>.min(totalAmount)</code> in <code>DiscountStrategyBase</code> template method.</td></tr>
+        <tr><td>CSV data corruption under concurrent writes</td><td>Applied synchronized file appending in <code>FileStorageService</code>.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>11.3 Advantages</h3>
+    <ul>
+      <li>Guaranteed thread safety and zero overselling under heavy concurrency.</li>
+      <li>Highly extensible architecture using the Strategy Pattern for discounts.</li>
+      <li>Modern, responsive desktop GUI with real-time activity streaming.</li>
+      <li>Pure Java file-based persistence with zero third-party database dependencies.</li>
+    </ul>
+
+    <h3>11.4 Limitations</h3>
+    <ul>
+      <li>Runs on a single JVM without distributed network sockets or external database clusters.</li>
+      <li>Maximum tested concurrency within default JVM stack memory is 500 simultaneous threads.</li>
+    </ul>
+
+    <h3>11.5 Future Scope</h3>
+    <ul>
+      <li>Database connectivity using JDBC and SQLite / PostgreSQL.</li>
+      <li>Network socket client-server architecture enabling multiple client laptops.</li>
+      <li>Priority customer queues (e.g., VIP / Prime shoppers).</li>
+      <li>Dynamic real-time charting using JFreeChart.</li>
+    </ul>
+
+    <br>
+    <h2>CHAPTER 12: CONCLUSION</h2>
+    <p>The <strong>FLASHDEAL PRO: E-Commerce Flash Sale Simulator</strong> project was successfully designed, developed, and tested. The project comprehensively demonstrates the practical application of core Object-Oriented Programming principles—encapsulation, inheritance, polymorphism, abstraction, interfaces, and custom checked exceptions—alongside advanced Java concurrency primitives (<code>synchronized</code> monitors, <code>CountDownLatch</code>, <code>ExecutorService</code>). Through this project, we gained invaluable practical experience in multithreaded mutual exclusion, race condition elimination, and thread-safe file persistence.</p>
+
+    <br>
+    <h2>CHAPTER 13: REFERENCES</h2>
+    <ol>
+      <li>Herbert Schildt, <em>Java: The Complete Reference</em>, 12th Edition, McGraw Hill Education.</li>
+      <li>E. Balagurusamy, <em>Programming with Java: A Primer</em>, 6th Edition, McGraw Hill.</li>
+      <li>Brian Goetz et al., <em>Java Concurrency in Practice</em>, Addison-Wesley Professional.</li>
+      <li>Oracle Official Java Documentation: Multithreading & Concurrency Utilities, https://docs.oracle.com/en/java/</li>
+      <li>Object Oriented Programming (Java) Course Guidelines, Department of CSE, MNR University.</li>
+    </ol>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 6</span></div>
+  </div>
+
+  <!-- PAGE 10: APPENDICES A & B -->
+  <div class="page">
+    <h2>APPENDIX A: COMPLETE SOURCE CODE & REPOSITORY</h2>
+    <p>The complete, commented source code of every class, unit tests, UML specifications, and compilation scripts are available in the repository:</p>
+    <ul>
+      <li><strong>GitHub Repository:</strong> <a href="https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7" target="_blank">https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7</a></li>
+      <li><strong>Live Web Demonstration:</strong> <a href="https://flashdeal-pro-simulator.vercel.app" target="_blank">https://flashdeal-pro-simulator.vercel.app</a></li>
+    </ul>
+
+    <br>
+    <h2>APPENDIX B: TEAM CONTRIBUTION</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 15%; text-align: center;">Roll Number</th>
+          <th style="width: 25%;">Name</th>
+          <th style="width: 35%;">Classes / Modules Developed</th>
+          <th>Report Chapters Written</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;"><strong>35</strong></td>
+          <td><strong>Shanmukhi</strong> (Lead)</td>
+          <td><code>Product</code>, <code>ProductRepository</code>, <code>ProductService</code>, <code>ProductPanel</code>, <code>MainFrame</code>, <code>Main</code></td>
+          <td>Chapters 1, 2, 3, 4, 8.1, Appendix A</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">[Roll No. --]</td>
+          <td>[Team Member 2 Name]</td>
+          <td><code>Customer</code>, <code>CustomerPurchaseTask</code>, <code>FlashSaleCoordinator</code>, <code>CustomerRepository</code></td>
+          <td>Chapters 5.1, 5.2, 7 (Algorithms)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">[Roll No. --]</td>
+          <td>[Team Member 3 Name]</td>
+          <td><code>Inventory</code>, <code>InventoryService</code>, <code>OutOfStockException</code>, <code>FlashSaleService</code></td>
+          <td>Chapters 6 (Java Concepts), 8.2</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">[Roll No. --]</td>
+          <td>[Team Member 4 Name]</td>
+          <td><code>DiscountStrategy</code>, <code>DiscountStrategyBase</code>, <code>PercentageDiscount</code>, <code>FlatDiscount</code>, <code>BankOfferDiscount</code></td>
+          <td>Chapters 5.3, 8.3, 11 (Results)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">[Roll No. --]</td>
+          <td>[Team Member 5 Name]</td>
+          <td><code>Order</code>, <code>OrderStatus</code>, <code>SaleMetric</code>, <code>OrderRepository</code>, <code>SalesReportService</code>, <code>ReportsPanel</code></td>
+          <td>Chapters 9 (Screenshots), 10 (Test Cases), 12, 13</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 7</span></div>
+  </div>
+
+</body>
+</html>
