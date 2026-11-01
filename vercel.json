@@ -2,10 +2,10 @@
   "version": 2,
   "name": "flashdeal-pro-simulator",
   "cleanUrls": true,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
