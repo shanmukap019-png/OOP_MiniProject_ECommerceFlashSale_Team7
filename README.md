@@ -31,9 +31,12 @@
 
 ---
 
-## 4. Student Roll Number
-- **Lead Student:** **Shanmuka Priya Katta** (Roll No: **35**)
-- **Team:** Team 7 (4 Members)
+## 4. Student Roll Numbers
+- **Team 7 (4 Members):**
+  1. Shanmuka Priya Katta (Roll No: **35**)
+  2. Butul Fatima (Roll No: **31**)
+  3. Soundarya (Roll No: **33**)
+  4. Sathwik K (Roll No: **34**)
 
 ---
 
@@ -347,8 +350,8 @@ Place captured application screenshots into the `screenshots/` directory for pro
 
 | Module # | Module Title | Assigned Member | Roll No. | Key Responsibilities |
 | :---: | :--- | :--- | :---: | :--- |
-| **Module 1** | Product & Inventory Modeling | Shanmuka Priya Katta *(Lead)* | **35** | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` |
-| **Module 2** | Customer & Concurrent Simulation | Butul Fatima | **34** | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` |
+| **Module 1** | Product & Inventory Modeling | Shanmuka Priya Katta | **35** | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` |
+| **Module 2** | Customer & Concurrent Simulation | Butul Fatima | **31** | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` |
 | **Module 3** | Synchronized Inventory | Soundarya | **33** | `Inventory`, `InventoryService`, `OutOfStockException`, `FlashSaleService` |
 | **Module 4 & 5** | Discount Strategy, Analytics & Orders | Sathwik K | **34** | `DiscountStrategy`, `PercentageDiscount`, `FlatDiscount`, `BankOfferDiscount`, `Order`, `OrderRepository`, `ReportsPanel` |
 

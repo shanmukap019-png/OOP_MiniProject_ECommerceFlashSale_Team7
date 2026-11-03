@@ -12,13 +12,13 @@
 
 | Module # | Module Title | Assigned Member | Roll Number | Primary Java Classes / Responsibilities |
 | :---: | :--- | :--- | :---: | :--- |
-| **Module 1** | **Product & Limited Inventory Modeling** | Shanmuka Priya Katta *(Lead)* | **35** | `com.flashdeal.model.Product`<br>`com.flashdeal.persistence.ProductRepository`<br>`com.flashdeal.service.ProductService`<br>`com.flashdeal.ui.ProductPanel`<br>`com.flashdeal.ui.MainFrame`<br>`com.flashdeal.app.Main` |
-| **Module 2** | **Customer & Multi-Threaded Purchase Simulation** | Butul Fatima | **34** | `com.flashdeal.model.Customer`<br>`com.flashdeal.concurrency.CustomerPurchaseTask`<br>`com.flashdeal.concurrency.FlashSaleCoordinator`<br>`com.flashdeal.persistence.CustomerRepository` |
+| **Module 1** | **Product & Limited Inventory Modeling** | Shanmuka Priya Katta | **35** | `com.flashdeal.model.Product`<br>`com.flashdeal.persistence.ProductRepository`<br>`com.flashdeal.service.ProductService`<br>`com.flashdeal.ui.ProductPanel`<br>`com.flashdeal.ui.MainFrame`<br>`com.flashdeal.app.Main` |
+| **Module 2** | **Customer & Multi-Threaded Purchase Simulation** | Butul Fatima | **31** | `com.flashdeal.model.Customer`<br>`com.flashdeal.concurrency.CustomerPurchaseTask`<br>`com.flashdeal.concurrency.FlashSaleCoordinator`<br>`com.flashdeal.persistence.CustomerRepository` |
 | **Module 3** | **Thread-Safe Synchronized Inventory Operations** | Soundarya | **33** | `com.flashdeal.inventory.Inventory`<br>`com.flashdeal.inventory.InventoryService`<br>`com.flashdeal.inventory.OutOfStockException`<br>`com.flashdeal.service.FlashSaleService` |
 | **Module 4** | **Polymorphic Discount Strategies & Coupons** | Sathwik K | **34** | `com.flashdeal.discount.DiscountStrategy`<br>`com.flashdeal.discount.DiscountStrategyBase`<br>`com.flashdeal.discount.PercentageDiscount`<br>`com.flashdeal.discount.FlatDiscount`<br>`com.flashdeal.discount.BankOfferDiscount`<br>`com.flashdeal.discount.DiscountService` |
 | **Module 5** | **Sales Analytics, Order History & CSV Reporting** | Sathwik K | **34** | `com.flashdeal.model.Order`<br>`com.flashdeal.model.OrderStatus`<br>`com.flashdeal.model.SaleMetric`<br>`com.flashdeal.persistence.OrderRepository`<br>`com.flashdeal.service.SalesReportService`<br>`com.flashdeal.ui.ReportsPanel` |
 
-> *Note:* Team 7 consists of 4 contributing members: Shanmuka Priya Katta (Roll 35), Butul Fatima (Roll 34), Soundarya (Roll 33), and Sathwik K (Roll 34).
+> *Note:* Team 7 consists of 4 contributing members: Shanmuka Priya Katta (Roll 35), Butul Fatima (Roll 31), Soundarya (Roll 33), and Sathwik K (Roll 34).
 
 ---
 
@@ -36,7 +36,7 @@
   - `ProductRepository`: Manages CSV reading and writing with UTF-8 encoding.
   - `ProductService`: Exposes catalog queries and search filters.
 
-### Module 2: Customer & Multi-Threaded Purchase Simulation (Butul Fatima - Roll 34)
+### Module 2: Customer & Multi-Threaded Purchase Simulation (Butul Fatima - Roll 31)
 - **Objective:** Model concurrent shoppers vying for limited stock during high-rush flash sales, executing purchase requests on concurrent threads using synchronization barriers.
 - **Key Java Concepts:**
   - Multithreading (`Thread`, `Runnable` interface implementation).

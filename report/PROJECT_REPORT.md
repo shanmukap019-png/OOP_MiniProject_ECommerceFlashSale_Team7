@@ -22,8 +22,8 @@
 
 | S.No | Student Name | Roll Number |
 | :---: | :--- | :---: |
-| 1 | **Shanmuka Priya Katta** *(Team Lead)* | **35** |
-| 2 | **Butul Fatima** | **34** |
+| 1 | **Shanmuka Priya Katta** | **35** |
+| 2 | **Butul Fatima** | **31** |
 | 3 | **Soundarya** | **33** |
 | 4 | **Sathwik K** | **34** |
 
@@ -62,7 +62,7 @@ We hereby declare that this mini project report is the result of our own work. T
 **Signature of the Students:**
 
 1. **Shanmuka Priya Katta** (Roll No: 35)
-2. **Butul Fatima** (Roll No: 34)
+2. **Butul Fatima** (Roll No: 31)
 3. **Soundarya** (Roll No: 33)
 4. **Sathwik K** (Roll No: 34)
 
@@ -659,7 +659,7 @@ The complete source code, test suites, UML specifications, batch compilation scr
 
 | Roll Number | Name | Classes / Modules Developed | Report Chapters Written |
 | :---: | :--- | :--- | :--- |
-| **35** | **Shanmuka Priya Katta** *(Lead)* | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` | Chapters 1, 2, 3, 4, 8.1, Appendix A |
-| **34** | **Butul Fatima** | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` | Chapters 5.1, 5.2, 7 (Algorithms) |
+| **35** | **Shanmuka Priya Katta** | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` | Chapters 1, 2, 3, 4, 8.1, Appendix A |
+| **31** | **Butul Fatima** | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` | Chapters 5.1, 5.2, 7 (Algorithms) |
 | **33** | **Soundarya** | `Inventory`, `InventoryService`, `OutOfStockException`, `FlashSaleService` | Chapters 6 (Java Concepts), 8.2 |
 | **34** | **Sathwik K** | `DiscountStrategy`, `DiscountStrategyBase`, `PercentageDiscount`, `FlatDiscount`, `BankOfferDiscount`, `Order`, `OrderRepository`, `ReportsPanel` | Chapters 5.3, 8.3, 9, 10, 11, 12, 13, Appendix B |
