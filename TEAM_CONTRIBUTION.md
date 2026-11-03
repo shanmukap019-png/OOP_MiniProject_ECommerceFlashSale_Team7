@@ -12,19 +12,19 @@
 
 | Module # | Module Title | Assigned Member | Roll Number | Primary Java Classes / Responsibilities |
 | :---: | :--- | :--- | :---: | :--- |
-| **Module 1** | **Product & Limited Inventory Modeling** | Shanmukhi *(Lead)* | **35** | `com.flashdeal.model.Product`<br>`com.flashdeal.persistence.ProductRepository`<br>`com.flashdeal.service.ProductService`<br>`com.flashdeal.ui.ProductPanel` |
-| **Module 2** | **Customer & Multi-Threaded Purchase Simulation** | [Team Member 2 Name] | [Roll No. --] | `com.flashdeal.model.Customer`<br>`com.flashdeal.concurrency.CustomerPurchaseTask`<br>`com.flashdeal.concurrency.FlashSaleCoordinator`<br>`com.flashdeal.persistence.CustomerRepository` |
-| **Module 3** | **Thread-Safe Synchronized Inventory Operations** | [Team Member 3 Name] | [Roll No. --] | `com.flashdeal.inventory.Inventory`<br>`com.flashdeal.inventory.InventoryService`<br>`com.flashdeal.inventory.OutOfStockException`<br>`com.flashdeal.service.FlashSaleService` |
-| **Module 4** | **Polymorphic Discount Strategies & Coupons** | [Team Member 4 Name] | [Roll No. --] | `com.flashdeal.discount.DiscountStrategy`<br>`com.flashdeal.discount.DiscountStrategyBase`<br>`com.flashdeal.discount.PercentageDiscount`<br>`com.flashdeal.discount.FlatDiscount`<br>`com.flashdeal.discount.BankOfferDiscount`<br>`com.flashdeal.discount.DiscountService` |
-| **Module 5** | **Sales Analytics, Order History & CSV Reporting** | [Team Member 5 Name] | [Roll No. --] | `com.flashdeal.model.Order`<br>`com.flashdeal.model.OrderStatus`<br>`com.flashdeal.model.SaleMetric`<br>`com.flashdeal.persistence.OrderRepository`<br>`com.flashdeal.service.SalesReportService`<br>`com.flashdeal.ui.ReportsPanel` |
+| **Module 1** | **Product & Limited Inventory Modeling** | Shanmuka Priya Katta *(Lead)* | **35** | `com.flashdeal.model.Product`<br>`com.flashdeal.persistence.ProductRepository`<br>`com.flashdeal.service.ProductService`<br>`com.flashdeal.ui.ProductPanel`<br>`com.flashdeal.ui.MainFrame`<br>`com.flashdeal.app.Main` |
+| **Module 2** | **Customer & Multi-Threaded Purchase Simulation** | Butul Fatima | **34** | `com.flashdeal.model.Customer`<br>`com.flashdeal.concurrency.CustomerPurchaseTask`<br>`com.flashdeal.concurrency.FlashSaleCoordinator`<br>`com.flashdeal.persistence.CustomerRepository` |
+| **Module 3** | **Thread-Safe Synchronized Inventory Operations** | Soundarya | **33** | `com.flashdeal.inventory.Inventory`<br>`com.flashdeal.inventory.InventoryService`<br>`com.flashdeal.inventory.OutOfStockException`<br>`com.flashdeal.service.FlashSaleService` |
+| **Module 4** | **Polymorphic Discount Strategies & Coupons** | Sathwik K | **34** | `com.flashdeal.discount.DiscountStrategy`<br>`com.flashdeal.discount.DiscountStrategyBase`<br>`com.flashdeal.discount.PercentageDiscount`<br>`com.flashdeal.discount.FlatDiscount`<br>`com.flashdeal.discount.BankOfferDiscount`<br>`com.flashdeal.discount.DiscountService` |
+| **Module 5** | **Sales Analytics, Order History & CSV Reporting** | Sathwik K | **34** | `com.flashdeal.model.Order`<br>`com.flashdeal.model.OrderStatus`<br>`com.flashdeal.model.SaleMetric`<br>`com.flashdeal.persistence.OrderRepository`<br>`com.flashdeal.service.SalesReportService`<br>`com.flashdeal.ui.ReportsPanel` |
 
-> *Note:* In accordance with university project guidelines, only Roll Number 35 is specified; placeholders (`[Team Member Name]`, `[Roll No. --]`) are provided for team members to enter their official university credentials prior to evaluation.
+> *Note:* Team 7 consists of 4 contributing members: Shanmuka Priya Katta (Roll 35), Butul Fatima (Roll 34), Soundarya (Roll 33), and Sathwik K (Roll 34).
 
 ---
 
 ## 2. Module Explanations & Technical Breakdown
 
-### Module 1: Product & Limited Inventory Modeling (Member 1 - Roll 35)
+### Module 1: Product & Limited Inventory Modeling (Shanmuka Priya Katta - Roll 35)
 - **Objective:** Design and encapsulate product catalog entities, enforce invariant pricing rules (original price, flash sale price in Indian Rupees ₹), validate inventory thresholds, and persist catalog state.
 - **Key Java Concepts:**
   - Encapsulation (`private` fields, getters, setters with defensive checks).
@@ -36,7 +36,7 @@
   - `ProductRepository`: Manages CSV reading and writing with UTF-8 encoding.
   - `ProductService`: Exposes catalog queries and search filters.
 
-### Module 2: Customer & Multi-Threaded Purchase Simulation (Member 2)
+### Module 2: Customer & Multi-Threaded Purchase Simulation (Butul Fatima - Roll 34)
 - **Objective:** Model concurrent shoppers vying for limited stock during high-rush flash sales, executing purchase requests on concurrent threads using synchronization barriers.
 - **Key Java Concepts:**
   - Multithreading (`Thread`, `Runnable` interface implementation).
@@ -49,7 +49,7 @@
   - `FlashSaleCoordinator`: Coordinates thundering-herd simulation of up to 500 simultaneous shoppers without freezing the GUI.
   - `CustomerRepository`: Seeded with 50 realistic Indian customer identities.
 
-### Module 3: Thread-Safe Synchronized Inventory Operations (Member 3)
+### Module 3: Thread-Safe Synchronized Inventory Operations (Soundarya - Roll 33)
 - **Objective:** Eliminate race conditions, overselling, and negative inventory by guaranteeing atomic check-and-decrement inventory transactions.
 - **Key Java Concepts:**
   - Thread synchronization (`synchronized` methods and synchronized monitor locks).
@@ -62,7 +62,7 @@
   - `InventoryService`: Dispatches inventory changes and broadcasts live updates to listeners.
   - `FlashSaleService`: Transaction orchestrator handling atomic stock deduction and exception recovery.
 
-### Module 4: Polymorphic Discount Strategies & Coupons (Member 4)
+### Module 4: Polymorphic Discount Strategies & Coupons (Sathwik K - Roll 34)
 - **Objective:** Implement an extensible discount architecture using the Strategy Pattern to dynamically calculate price deductions based on coupon rules, threshold minimums, and discount caps.
 - **Key Java Concepts:**
   - Interfaces (`DiscountStrategy`).
@@ -77,7 +77,7 @@
   - `BankOfferDiscount`: E.g., `BANK15` (15% card discount on orders >= ₹1500, max ₹750).
   - `DiscountService`: O(1) coupon registry using `HashMap`.
 
-### Module 5: Sales Analytics, Order History & CSV Reporting (Member 5)
+### Module 5: Sales Analytics, Order History & CSV Reporting (Sathwik K - Roll 34)
 - **Objective:** Audit every purchase attempt (both successful orders and out-of-stock rejections), aggregate total revenue and units sold, and export comprehensive CSV analytical reports.
 - **Key Java Concepts:**
   - Enumerations (`OrderStatus`: `SUCCESS`, `FAILED`, `OUT_OF_STOCK`).

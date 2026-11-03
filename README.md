@@ -32,8 +32,8 @@
 ---
 
 ## 4. Student Roll Number
-- **Lead Student Roll Number:** **35** (Shanmukhi)
-- **Team:** Team 7 (5 Members)
+- **Lead Student:** **Shanmuka Priya Katta** (Roll No: **35**)
+- **Team:** Team 7 (4 Members)
 
 ---
 
@@ -347,11 +347,10 @@ Place captured application screenshots into the `screenshots/` directory for pro
 
 | Module # | Module Title | Assigned Member | Roll No. | Key Responsibilities |
 | :---: | :--- | :--- | :---: | :--- |
-| **Module 1** | Product & Inventory Modeling | Shanmukhi *(Lead)* | **35** | `Product`, `ProductRepository`, `ProductService`, `ProductPanel` |
-| **Module 2** | Customer & Concurrent Simulation | [Team Member 2 Name] | [Roll No. --] | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator` |
-| **Module 3** | Synchronized Inventory | [Team Member 3 Name] | [Roll No. --] | `Inventory`, `InventoryService`, `OutOfStockException` |
-| **Module 4** | Discount Strategy & Coupons | [Team Member 4 Name] | [Roll No. --] | `DiscountStrategy`, `PercentageDiscount`, `FlatDiscount`, `BankOfferDiscount` |
-| **Module 5** | Sales Analytics & CSV Reports | [Team Member 5 Name] | [Roll No. --] | `Order`, `OrderRepository`, `SalesReportService`, `ReportsPanel` |
+| **Module 1** | Product & Inventory Modeling | Shanmuka Priya Katta *(Lead)* | **35** | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` |
+| **Module 2** | Customer & Concurrent Simulation | Butul Fatima | **34** | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` |
+| **Module 3** | Synchronized Inventory | Soundarya | **33** | `Inventory`, `InventoryService`, `OutOfStockException`, `FlashSaleService` |
+| **Module 4 & 5** | Discount Strategy, Analytics & Orders | Sathwik K | **34** | `DiscountStrategy`, `PercentageDiscount`, `FlatDiscount`, `BankOfferDiscount`, `Order`, `OrderRepository`, `ReportsPanel` |
 
 *(Detailed module breakdown available in [TEAM_CONTRIBUTION.md](file:///c:/Users/SHANMUKHI/Downloads/java%20mini%20project/TEAM_CONTRIBUTION.md))*
 

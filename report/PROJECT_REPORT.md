@@ -22,11 +22,10 @@
 
 | S.No | Student Name | Roll Number |
 | :---: | :--- | :---: |
-| 1 | **Shanmukhi** *(Team Lead)* | **35** |
-| 2 | [Team Member 2 Name] | [Roll No. --] |
-| 3 | [Team Member 3 Name] | [Roll No. --] |
-| 4 | [Team Member 4 Name] | [Roll No. --] |
-| 5 | [Team Member 5 Name] | [Roll No. --] |
+| 1 | **Shanmuka Priya Katta** *(Team Lead)* | **35** |
+| 2 | **Butul Fatima** | **34** |
+| 3 | **Soundarya** | **33** |
+| 4 | **Sathwik K** | **34** |
 
 ---
 
@@ -62,11 +61,10 @@ We hereby declare that this mini project report is the result of our own work. T
 
 **Signature of the Students:**
 
-1. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (Shanmukhi, Roll No: 35)
-2. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ ([Team Member 2 Name])
-3. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ ([Team Member 3 Name])
-4. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ ([Team Member 4 Name])
-5. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ ([Team Member 5 Name])
+1. **Shanmuka Priya Katta** (Roll No: 35)
+2. **Butul Fatima** (Roll No: 34)
+3. **Soundarya** (Roll No: 33)
+4. **Sathwik K** (Roll No: 34)
 
 \pagebreak
 
@@ -661,8 +659,7 @@ The complete source code, test suites, UML specifications, batch compilation scr
 
 | Roll Number | Name | Classes / Modules Developed | Report Chapters Written |
 | :---: | :--- | :--- | :--- |
-| **35** | **Shanmukhi** *(Lead)* | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` | Chapters 1, 2, 3, 4, 8.1, Appendix A |
-| **[Roll No. --]** | [Team Member 2 Name] | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` | Chapters 5.1, 5.2, 7 (Algorithms) |
-| **[Roll No. --]** | [Team Member 3 Name] | `Inventory`, `InventoryService`, `OutOfStockException`, `FlashSaleService` | Chapters 6 (Java Concepts), 8.2 |
-| **[Roll No. --]** | [Team Member 4 Name] | `DiscountStrategy`, `DiscountStrategyBase`, `PercentageDiscount`, `FlatDiscount`, `BankOfferDiscount`, `DiscountService` | Chapters 5.3, 8.3, 11 (Results) |
-| **[Roll No. --]** | [Team Member 5 Name] | `Order`, `OrderStatus`, `SaleMetric`, `OrderRepository`, `SalesReportService`, `ReportsPanel` | Chapters 9 (Screenshots), 10 (Test Cases), 12, 13 |
+| **35** | **Shanmuka Priya Katta** *(Lead)* | `Product`, `ProductRepository`, `ProductService`, `ProductPanel`, `MainFrame`, `Main` | Chapters 1, 2, 3, 4, 8.1, Appendix A |
+| **34** | **Butul Fatima** | `Customer`, `CustomerPurchaseTask`, `FlashSaleCoordinator`, `CustomerRepository` | Chapters 5.1, 5.2, 7 (Algorithms) |
+| **33** | **Soundarya** | `Inventory`, `InventoryService`, `OutOfStockException`, `FlashSaleService` | Chapters 6 (Java Concepts), 8.2 |
+| **34** | **Sathwik K** | `DiscountStrategy`, `DiscountStrategyBase`, `PercentageDiscount`, `FlatDiscount`, `BankOfferDiscount`, `Order`, `OrderRepository`, `ReportsPanel` | Chapters 5.3, 8.3, 9, 10, 11, 12, 13, Appendix B |
