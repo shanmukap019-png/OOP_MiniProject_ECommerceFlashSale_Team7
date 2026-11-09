@@ -17,6 +17,20 @@ def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcMar = parse_xml(f'<w:tcMar {nsdecls("w")}><w:top w:w="{top}" w:type="dxa"/><w:bottom w:w="{bottom}" w:type="dxa"/><w:left w:w="{left}" w:type="dxa"/><w:right w:w="{right}" w:type="dxa"/></w:tcMar>')
     tcPr.append(tcMar)
 
+def add_hyperlink(paragraph, url, text, color="1D4ED8", underline=True):
+    part = paragraph.part
+    r_id = part.relate_to(url, docx.opc.constants.RELATIONSHIP_TYPE.HYPERLINK, is_external=True)
+    hyperlink = parse_xml(f'<w:hyperlink {nsdecls("w")} r:id="{r_id}" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>')
+    new_run = parse_xml(f'<w:r {nsdecls("w")}/>')
+    u_tag = '<w:u w:val="single"/>' if underline else ''
+    rPr = parse_xml(f'<w:rPr {nsdecls("w")}><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/><w:color w:val="{color}"/>{u_tag}<w:b/></w:rPr>')
+    new_run.append(rPr)
+    text_node = parse_xml(f'<w:t {nsdecls("w")} xml:space="preserve">{text}</w:t>')
+    new_run.append(text_node)
+    hyperlink.append(new_run)
+    paragraph._p.append(hyperlink)
+    return hyperlink
+
 def create_report():
     doc = Document()
     
@@ -157,21 +171,32 @@ def create_report():
     # =========================================================================
     # PAGE 1: TITLE PAGE
     # =========================================================================
-    add_p("", space_after=30)
+    logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "report", "mnr_logo.jpg"))
+    if not os.path.exists(logo_path):
+        logo_path = "report/mnr_logo.jpg"
+    if os.path.exists(logo_path):
+        p_logo = doc.add_paragraph()
+        p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_logo.paragraph_format.space_before = Pt(0)
+        p_logo.paragraph_format.space_after = Pt(10)
+        p_logo.add_run().add_picture(logo_path, width=Inches(1.8))
+    else:
+        add_p("", space_after=20)
+
     add_p("MNR UNIVERSITY", align=WD_ALIGN_PARAGRAPH.CENTER, size=18, bold=True, space_after=4)
     add_p("School of Engineering & Technology (SOET)", align=WD_ALIGN_PARAGRAPH.CENTER, size=13, bold=True, space_after=2)
-    add_p("Department of Computer Science and Engineering", align=WD_ALIGN_PARAGRAPH.CENTER, size=12, bold=False, space_after=36)
+    add_p("Department of Computer Science and Engineering", align=WD_ALIGN_PARAGRAPH.CENTER, size=12, bold=False, space_after=28)
 
     add_p("MINI PROJECT REPORT", align=WD_ALIGN_PARAGRAPH.CENTER, size=15, bold=True, space_after=6)
     add_p("on", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, italic=True, space_after=6)
     add_p("FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR", align=WD_ALIGN_PARAGRAPH.CENTER, size=15, bold=True, color=RGBColor(30, 58, 138), space_after=6)
-    add_p("(Java Programming Implementation-Based Mini-Project)", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, italic=True, space_after=20)
+    add_p("(Java Programming Implementation-Based Mini-Project)", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, italic=True, space_after=18)
 
     add_p("Course: Object Oriented Programming (Java)", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=2)
     add_p("B.Tech – Computer Science and Engineering (CSE / AIML)", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=False, space_after=2)
-    add_p("Assigned Project Number: 7", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=26)
+    add_p("Assigned Project Number: 7", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=20)
 
-    add_p("Submitted by", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=8)
+    add_p("Submitted by", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=6)
     
     team_data = [
         ["1", "Shanmuka Priya Katta", "35"],
@@ -181,10 +206,21 @@ def create_report():
     ]
     add_table_data(["S.No", "Student Name", "Roll Number"], team_data, [0.8, 3.8, 1.8])
 
-    add_p("", space_after=20)
+    # Clickable GitHub Repository Hyperlink on Title Page
+    repo_box = doc.add_paragraph()
+    repo_box.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    repo_box.paragraph_format.space_before = Pt(6)
+    repo_box.paragraph_format.space_after = Pt(14)
+    run_label = repo_box.add_run("Project Repository: ")
+    run_label.bold = True
+    run_label.font.name = "Times New Roman"
+    run_label.font.size = Pt(11)
+    run_label.font.color.rgb = RGBColor(15, 23, 42)
+    add_hyperlink(repo_box, "https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7", "https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7", color="1D4ED8", underline=True)
+
     add_p("Under the guidance of", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=2)
     add_p("[Faculty Name], Lecturer, Department of CSE", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=False, space_after=2)
-    add_p("School of Engineering & Technology, MNR University", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=False, space_after=14)
+    add_p("School of Engineering & Technology, MNR University", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=False, space_after=12)
     add_p("Academic Year 2026 – 2027", align=WD_ALIGN_PARAGRAPH.CENTER, size=11, bold=True, space_after=0)
 
     doc.add_page_break()
@@ -648,9 +684,23 @@ def create_report():
     # APPENDICES
     # =========================================================================
     add_h1("APPENDIX A: COMPLETE SOURCE CODE & REPOSITORY")
-    add_p("The complete, commented source code of every class, unit tests, UML specifications, and compilation scripts are available in the repository:")
-    add_bullet("• GitHub Repository: ", "https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7")
-    add_bullet("• Live Web Demonstration: ", "https://flashdeal-pro-simulator.vercel.app")
+    add_p("The complete, commented source code of every class, unit tests, UML specifications, and compilation scripts are publicly accessible in our project repository:")
+    
+    p_git = doc.add_paragraph(style='List Bullet')
+    p_git.paragraph_format.space_after = Pt(4)
+    r_git = p_git.add_run("GitHub Repository: ")
+    r_git.bold = True
+    r_git.font.name = "Times New Roman"
+    r_git.font.size = Pt(11)
+    add_hyperlink(p_git, "https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7", "https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7", color="1D4ED8", underline=True)
+
+    p_demo = doc.add_paragraph(style='List Bullet')
+    p_demo.paragraph_format.space_after = Pt(8)
+    r_demo = p_demo.add_run("Live Web Demonstration: ")
+    r_demo.bold = True
+    r_demo.font.name = "Times New Roman"
+    r_demo.font.size = Pt(11)
+    add_hyperlink(p_demo, "https://flashdeal-pro-simulator.vercel.app", "https://flashdeal-pro-simulator.vercel.app", color="059669", underline=True)
 
     add_p("", space_after=15)
     add_h1("APPENDIX B: TEAM CONTRIBUTION")

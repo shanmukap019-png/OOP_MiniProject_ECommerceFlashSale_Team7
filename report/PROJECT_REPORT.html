@@ -6,12 +6,17 @@
   <style>
     @page {
       size: A4;
-      margin: 20mm 20mm 20mm 20mm;
+      margin: 12mm 15mm 12mm 15mm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    *, *:before, *:after {
+      box-sizing: border-box;
     }
     body {
       font-family: 'Times New Roman', Times, serif;
-      font-size: 12pt;
-      line-height: 1.5;
+      font-size: 10.5pt;
+      line-height: 1.35;
       color: #111;
       background-color: #f8fafc;
       margin: 0;
@@ -21,10 +26,9 @@
       background: white;
       width: 210mm;
       min-height: 297mm;
-      padding: 25mm 20mm 20mm 20mm;
+      padding: 16mm 18mm;
       margin: 0 auto 20px auto;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      box-sizing: border-box;
       position: relative;
     }
     @media print {
@@ -33,13 +37,20 @@
         padding: 0;
       }
       .page {
-        margin: 0;
-        box-shadow: none;
-        page-break-after: always;
-        min-height: 100vh;
+        width: 100% !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
       }
       .no-print {
         display: none !important;
+      }
+      .page-footer {
+        position: static !important;
+        margin-top: 15px !important;
       }
     }
     .print-bar {
@@ -56,7 +67,7 @@
       font-family: system-ui, -apple-system, sans-serif;
     }
     .print-btn {
-      background: #3b82f6;
+      background: #2563eb;
       color: white;
       border: none;
       padding: 8px 18px;
@@ -67,9 +78,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      text-decoration: none;
     }
     .print-btn:hover {
-      background: #2563eb;
+      background: #1d4ed8;
     }
     .center {
       text-align: center;
@@ -77,27 +89,34 @@
     h1, h2, h3, h4 {
       font-weight: bold;
       color: #000;
-      margin: 0 0 10px 0;
+      margin: 0 0 6px 0;
     }
-    h1 { font-size: 18pt; text-transform: uppercase; }
-    h2 { font-size: 15pt; }
-    h3 { font-size: 13pt; }
-    h4 { font-size: 12pt; }
+    h1 { font-size: 16pt; text-transform: uppercase; }
+    h2 { font-size: 13pt; margin-top: 8px; }
+    h3 { font-size: 11.5pt; margin-top: 6px; }
+    h4 { font-size: 10.5pt; margin-top: 4px; }
     p {
-      margin: 0 0 10px 0;
+      margin: 0 0 6px 0;
       text-align: justify;
+    }
+    ul, ol {
+      margin: 0 0 8px 0;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 3px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0 16px 0;
-      font-size: 10.5pt;
+      margin: 8px 0 10px 0;
+      font-size: 9.5pt;
     }
     table, th, td {
       border: 1px solid #333;
     }
     th, td {
-      padding: 6px 8px;
+      padding: 4px 6px;
       text-align: left;
     }
     th {
@@ -106,42 +125,48 @@
     }
     code, pre {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 9.5pt;
+      font-size: 8.5pt;
     }
     pre {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      padding: 10px;
+      padding: 6px 10px;
       border-radius: 4px;
-      overflow-x: auto;
+      margin: 6px 0;
       white-space: pre-wrap;
+    }
+    a {
+      color: #1d4ed8 !important;
+      text-decoration: underline !important;
+      cursor: pointer !important;
     }
     .page-footer {
       position: absolute;
-      bottom: 15mm;
-      left: 20mm;
-      right: 20mm;
+      bottom: 12mm;
+      left: 18mm;
+      right: 18mm;
       display: flex;
       justify-content: space-between;
-      font-size: 10pt;
+      font-size: 9pt;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      padding-top: 5px;
+      padding-top: 4px;
     }
     .figure-container {
       text-align: center;
-      margin: 15px 0;
+      margin: 8px 0;
     }
     .figure-img {
-      max-width: 95%;
+      max-width: 90%;
+      max-height: 140px;
       height: auto;
       border: 1px solid #cbd5e1;
       border-radius: 4px;
     }
     .figure-caption {
-      font-size: 10pt;
+      font-size: 8.5pt;
       font-weight: bold;
-      margin-top: 5px;
+      margin-top: 3px;
     }
   </style>
 </head>
@@ -151,75 +176,97 @@
     <div>
       <strong>FLASHDEAL PRO: E-Commerce Flash Sale Simulator</strong> — Official Academic Report (MNR University)
     </div>
-    <button class="print-btn" onclick="window.print()">
-      🖨️ Print / Save as PDF
-    </button>
+    <div style="display: flex; gap: 10px;">
+      <a href="PROJECT_REPORT.pdf" download class="print-btn" style="background: #059669;">
+        📥 Download Official PDF
+      </a>
+      <button class="print-btn" onclick="window.print()">
+        🖨️ Print to PDF
+      </button>
+    </div>
   </div>
 
   <!-- PAGE 1: TITLE PAGE -->
   <div class="page center">
-    <br><br>
-    <h1>MNR UNIVERSITY</h1>
-    <h3>School of Engineering & Technology (SOET)</h3>
-    <h4>Department of Computer Science and Engineering</h4>
-    <br><br><br>
-    <h2>MINI PROJECT REPORT</h2>
-    <p style="text-align: center; font-size: 12pt;">on</p>
-    <h2 style="font-size: 16pt; color: #1e3a8a;">FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR</h2>
-    <p style="text-align: center; font-style: italic;">(Java Programming Implementation-Based Mini-Project)</p>
-    <br>
-    <p style="text-align: center;"><strong>Course:</strong> Object Oriented Programming (Java)<br>
-    <strong>B.Tech</strong> – Computer Science and Engineering (CSE / AIML)<br>
-    <strong>Assigned Project Number:</strong> 7</p>
-    <br><br>
-    <h3 style="font-size: 12pt;">Submitted by</h3>
-    <table style="width: 85%; margin: 0 auto;">
-      <thead>
-        <tr>
-          <th style="text-align: center; width: 15%;">S.No</th>
-          <th>Student Name</th>
-          <th style="text-align: center; width: 30%;">Roll Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align: center;">1</td>
-          <td><strong>Shanmuka Priya Katta</strong></td>
-          <td style="text-align: center;"><strong>35</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">2</td>
-          <td><strong>Butul Fatima</strong></td>
-          <td style="text-align: center;"><strong>31</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">3</td>
-          <td><strong>Soundarya</strong></td>
-          <td style="text-align: center;"><strong>33</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">4</td>
-          <td><strong>Sathwik K</strong></td>
-          <td style="text-align: center;"><strong>34</strong></td>
-        </tr>
-      </tbody>
-    </table>
-    <br><br><br>
-    <p style="text-align: center;"><strong>Under the guidance of</strong><br>
-    <strong>[Faculty Name]</strong>, Lecturer, Department of CSE<br>
-    School of Engineering & Technology, MNR University</p>
-    <br>
-    <p style="text-align: center; font-weight: bold;">Academic Year 2026 – 2027</p>
+    <div style="text-align: center; margin-top: 15px; margin-bottom: 15px;">
+      <img src="mnr_logo.jpg" alt="MNR University Logo" style="height: 85px; width: auto; object-fit: contain;">
+    </div>
+    <h1 style="font-size: 18pt; letter-spacing: 0.5px;">MNR UNIVERSITY</h1>
+    <h3 style="font-size: 13pt;">School of Engineering & Technology (SOET)</h3>
+    <h4 style="font-size: 12pt; font-weight: normal; margin-bottom: 25px;">Department of Computer Science and Engineering</h4>
+
+    <h2 style="font-size: 16pt;">MINI PROJECT REPORT</h2>
+    <p style="text-align: center; font-size: 11pt; margin-bottom: 4px;">on</p>
+    <h2 style="font-size: 17pt; color: #1e3a8a; margin-bottom: 4px;">FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR</h2>
+    <p style="text-align: center; font-style: italic; font-size: 11pt; margin-bottom: 20px;">(Java Programming Implementation-Based Mini-Project)</p>
+
+    <p style="text-align: center; font-size: 11pt; line-height: 1.5;">
+      <strong>Course:</strong> Object Oriented Programming (Java)<br>
+      <strong>B.Tech</strong> – Computer Science and Engineering (CSE / AIML)<br>
+      <strong>Assigned Project Number:</strong> 7
+    </p>
+
+    <div style="margin: 20px auto 10px auto; width: 85%;">
+      <h3 style="font-size: 11.5pt; text-align: center; margin-bottom: 6px;">Submitted by</h3>
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align: center; width: 15%;">S.No</th>
+            <th>Student Name</th>
+            <th style="text-align: center; width: 30%;">Roll Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center;">1</td>
+            <td><strong>Shanmuka Priya Katta</strong></td>
+            <td style="text-align: center;"><strong>35</strong></td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">2</td>
+            <td><strong>Butul Fatima</strong></td>
+            <td style="text-align: center;"><strong>31</strong></td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">3</td>
+            <td><strong>Soundarya</strong></td>
+            <td style="text-align: center;"><strong>33</strong></td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">4</td>
+            <td><strong>Sathwik K</strong></td>
+            <td style="text-align: center;"><strong>34</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PROMINENT CLICKABLE GITHUB HYPERLINK -->
+    <div style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; margin: 15px auto; width: 90%;">
+      <span style="font-weight: bold; font-size: 10.5pt;">🔗 Project Repository:</span>
+      <a href="https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7" target="_blank" style="color: #1d4ed8; font-weight: bold; font-size: 10.5pt; text-decoration: underline; margin-left: 6px;">
+        https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7
+      </a>
+    </div>
+
+    <p style="text-align: center; margin-top: 25px; line-height: 1.4;">
+      <strong>Under the guidance of</strong><br>
+      <strong>[Faculty Name]</strong>, Lecturer, Department of CSE<br>
+      School of Engineering & Technology, MNR University
+    </p>
+    <p style="text-align: center; font-weight: bold; margin-top: 15px; font-size: 11pt;">Academic Year 2026 – 2027</p>
   </div>
 
   <!-- PAGE 2: CERTIFICATE & DECLARATION -->
   <div class="page">
     <div class="center">
-      <h2>CERTIFICATE</h2>
+      <h2 style="font-size: 16pt;">CERTIFICATE</h2>
     </div>
     <br>
-    <p>This is to certify that the mini project report titled <strong>“FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR”</strong> is a bonafide record of the work carried out by the students listed on the title page, in partial fulfilment of the requirements of the course <strong>Object Oriented Programming (Java)</strong>, <strong>B.Tech – Computer Science and Engineering</strong>, Department of Computer Science and Engineering, School of Engineering & Technology, <strong>MNR University</strong>, during the academic year 2026–2027.</p>
-    <br><br><br><br>
+    <p style="font-size: 11pt; line-height: 1.6;">
+      This is to certify that the mini project report titled <strong>“FLASHDEAL PRO: E-COMMERCE FLASH SALE SIMULATOR”</strong> is a bonafide record of the work carried out by the students listed on the title page, in partial fulfilment of the requirements of the course <strong>Object Oriented Programming (Java)</strong>, <strong>B.Tech – Computer Science and Engineering</strong>, Department of Computer Science and Engineering, School of Engineering & Technology, <strong>MNR University</strong>, during the academic year 2026–2027.
+    </p>
+    <br><br><br>
     <table style="border: none; margin-top: 40px;">
       <tr style="border: none;">
         <td style="border: none; width: 50%;"><strong>Faculty Guide</strong></td>
@@ -228,25 +275,27 @@
     </table>
     <br><br>
     <p><strong>Date:</strong> ________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Place:</strong> ________________</p>
-    <br><hr><br>
+    <br><hr style="border: 0; border-top: 1px solid #94a3b8;"><br>
     <div class="center">
-      <h2>DECLARATION</h2>
+      <h2 style="font-size: 16pt;">DECLARATION</h2>
     </div>
     <br>
-    <p>We hereby declare that this mini project report is the result of our own work. The program was written, executed, and tested by us. Any help, book, or website used has been mentioned in the references.</p>
-    <br><br>
+    <p style="font-size: 11pt; line-height: 1.6;">
+      We hereby declare that this mini project report is the result of our own work. The program was written, executed, and tested by us. Any help, book, or website used has been mentioned in the references.
+    </p>
+    <br>
     <p><strong>Signature of the Students:</strong></p>
     <br>
-    <p>1. <strong>Shanmuka Priya Katta</strong> (Roll No: 35)</p>
-    <p>2. <strong>Butul Fatima</strong> (Roll No: 31)</p>
-    <p>3. <strong>Soundarya</strong> (Roll No: 33)</p>
-    <p>4. <strong>Sathwik K</strong> (Roll No: 34)</p>
+    <p style="font-size: 11pt; margin-bottom: 8px;">1. <strong>Shanmuka Priya Katta</strong> (Roll No: 35)</p>
+    <p style="font-size: 11pt; margin-bottom: 8px;">2. <strong>Butul Fatima</strong> (Roll No: 31)</p>
+    <p style="font-size: 11pt; margin-bottom: 8px;">3. <strong>Soundarya</strong> (Roll No: 33)</p>
+    <p style="font-size: 11pt; margin-bottom: 8px;">4. <strong>Sathwik K</strong> (Roll No: 34)</p>
   </div>
 
   <!-- PAGE 3: CONTENTS -->
   <div class="page">
     <div class="center">
-      <h2>CONTENTS</h2>
+      <h2 style="font-size: 16pt;">CONTENTS</h2>
     </div>
     <br>
     <table>
@@ -292,7 +341,7 @@
     <p>In modern e-commerce ecosystems during mega-sales events (such as Flipkart Big Billion Days, Amazon Great Indian Festival, or limited-quantity product drops), thousands of shoppers click "Buy Now" at the exact same second. A robust software architecture is critical to guarantee data consistency and fairness under sudden concurrency spikes. Java is particularly well-suited for this domain because it is object-oriented, strictly typed, platform-independent, and provides built-in enterprise-grade concurrency utilities (<code>java.util.concurrent</code>), atomic synchronization primitives, and powerful data structures such as <code>LinkedHashMap</code> and <code>ArrayList</code>.</p>
 
     <h3>2.2 Problem Statement</h3>
-    <p>In traditional or uncoordinated systems, when multiple threads access and update shared inventory variables at the same instant, critical section race conditions occur: multiple customer threads read <code>stock = 1</code> simultaneously and approve purchases, leaving inventory negative (<code>stock = -49</code>), double-selling units to multiple distinct customers, and crashing the user interface.</p>
+    <p>In traditional or uncoordinated systems, when multiple threads access and update shared inventory variables at the same instant, critical section race conditions occur: multiple customer threads read <code>stock = 1</code> simultaneously and approve purchases, leaving inventory negative (<code>stock = -49</code>), double-selling units to distinct customers, and freezing the application interface.</p>
 
     <h3>2.3 Proposed Solution</h3>
     <p>The proposed Java application addresses these challenges through:</p>
@@ -322,13 +371,13 @@
     <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 1</span></div>
   </div>
 
-  <!-- PAGE 5: CHAPTERS 4 & 5 -->
+  <!-- PAGE 5: CHAPTERS 4 & 5.1 -->
   <div class="page">
     <h2>CHAPTER 4: REQUIREMENTS</h2>
     <h3>4.1 Functional Requirements</h3>
     <p>The program should be able to:</p>
     <ul>
-      <li>Add and browse product records with dual pricing in ₹ and dynamic discount badges.</li>
+      <li>Add and browse product records with dual pricing in ₹ and dynamic discount percentage badges.</li>
       <li>Search and filter products by name and category (Smartphones, Audio, Wearables, Accessories).</li>
       <li>Update and reset product stock levels for demonstration purposes.</li>
       <li>Execute concurrent flash sale simulations (Core Operation) with 1 to 500 simultaneous customer threads.</li>
@@ -402,8 +451,7 @@
         <tr><td><strong>User Interface</strong></td><td>Java Swing & AWT (Desktop GUI) + Responsive HTML/CSS/JS (Web Showcase)</td></tr>
         <tr><td><strong>Storage</strong></td><td>Plain-text CSV files (<code>products.csv</code>, <code>orders.csv</code>, <code>customers.csv</code>) with UTF-8 encoding</td></tr>
         <tr><td><strong>Concurrency API</strong></td><td><code>java.util.concurrent</code> (<code>CountDownLatch</code>, <code>ExecutorService</code>, <code>synchronized</code>)</td></tr>
-        <tr><td><strong>Operating System</strong></td><td>Windows 10 / 11, Linux, or macOS</td></tr>
-        <tr><td><strong>Hardware Requirements</strong></td><td>Dual-core CPU 2.0 GHz or higher, 4 GB RAM minimum (8 GB recommended), 200 MB disk space</td></tr>
+        <tr><td><strong>Hardware Requirements</strong></td><td>Dual-core CPU 2.0 GHz or higher, 4 GB RAM minimum, 200 MB disk space</td></tr>
       </tbody>
     </table>
 
@@ -427,12 +475,7 @@
         <tr><td><code>Inventory</code></td><td>Thread-Safe Monitor</td><td>Encapsulates monitor lock for atomic stock deduction and restoration.</td></tr>
         <tr><td><code>OutOfStockException</code></td><td>User-Defined Exception</td><td>Custom checked exception thrown when requested units exceed stock.</td></tr>
         <tr><td><code>DiscountStrategy</code></td><td>Interface</td><td>Standard contract for promotional algorithms.</td></tr>
-        <tr><td><code>DiscountStrategyBase</code></td><td>Abstract Class</td><td>Template method base enforcing order thresholds and discount caps.</td></tr>
-        <tr><td><code>PercentageDiscount</code></td><td>Class (extends Base)</td><td>Calculates % discount with maximum ceiling (e.g., <code>SAVE10</code>).</td></tr>
-        <tr><td><code>FlatDiscount</code></td><td>Class (extends Base)</td><td>Calculates flat rupee discount on eligible orders (e.g., <code>FLAT100</code>).</td></tr>
-        <tr><td><code>BankOfferDiscount</code></td><td>Class (extends Base)</td><td>Calculates instant card discount with savings limit (e.g., <code>BANK15</code>).</td></tr>
         <tr><td><code>FlashSaleCoordinator</code></td><td>Concurrency Manager</td><td>Spawns thread pool and coordinates simultaneous <code>CountDownLatch</code> rush.</td></tr>
-        <tr><td><code>FlashSaleService</code></td><td>Core Service</td><td>Transaction controller linking inventory, discounts, and order repository.</td></tr>
       </tbody>
     </table>
     <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 2</span></div>
@@ -453,7 +496,7 @@
           <td><strong>Product</strong></td>
           <td>
             <strong>Data members:</strong> <code>productId, name, description, category, originalPrice, flashSalePrice, initialStock, availableStock, status</code><br>
-            <strong>Constructors:</strong> Parameterized constructor with validation.<br>
+            <strong>Constructors:</strong> Parameterized constructor with defensive validation.<br>
             <strong>Methods:</strong> <code>getProductId(), getAvailableStock(), setAvailableStock(), calculateDiscountPercentage(), toCsvRow()</code>
           </td>
         </tr>
@@ -591,18 +634,6 @@ public int deductStock(String productId, int requestedQuantity) throws OutOfStoc
     }
 }</pre>
 
-    <p><strong>Class: <code>FlashSaleCoordinator</code></strong> | <em>Purpose: Multi-threaded start barrier releasing concurrent shoppers simultaneously</em></p>
-    <pre>
-CountDownLatch startLatch = new CountDownLatch(1);
-CountDownLatch completionLatch = new CountDownLatch(totalCustomers);
-for (Customer customer : customers) {
-    threadPool.submit(new CustomerPurchaseTask(
-        customer, product, unitsPerCust, couponCode, flashSaleService, startLatch, completionLatch
-    ));
-}
-startLatch.countDown(); // Barrier lifted: all customer threads race simultaneously
-completionLatch.await(30, TimeUnit.SECONDS);</pre>
-
     <h3>8.3 Exceptions, Collections and Threads</h3>
     <table>
       <thead>
@@ -625,17 +656,23 @@ completionLatch.await(30, TimeUnit.SECONDS);</pre>
   <!-- PAGE 8: CHAPTERS 9 & 10 -->
   <div class="page">
     <h2>CHAPTER 9: OUTPUT SCREENSHOTS</h2>
-    <div class="figure-container">
-      <img src="../screenshots/01_dashboard.png" class="figure-img" alt="Figure 9.1: Main Menu & Dashboard">
-      <div class="figure-caption">Figure 9.1: Main Menu & Executive Dashboard (KPI Metrics & Recent Orders)</div>
-    </div>
-    <div class="figure-container">
-      <img src="../screenshots/03_simulator.png" class="figure-img" alt="Figure 9.2: Flash Sale Simulator">
-      <div class="figure-caption">Figure 9.2: Core Operation – Flash Sale Simulator Running with 50 Concurrent Customer Threads</div>
-    </div>
-    <div class="figure-container">
-      <img src="../screenshots/04_order_history.png" class="figure-img" alt="Figure 9.3: Order History Ledger">
-      <div class="figure-caption">Figure 9.3: Order History Ledger showing OutOfStockException Handling and Status Badges</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      <div class="figure-container">
+        <img src="../screenshots/01_dashboard.png" class="figure-img" alt="Figure 9.1: Main Menu & Dashboard">
+        <div class="figure-caption">Figure 9.1: Main Menu & Executive Dashboard</div>
+      </div>
+      <div class="figure-container">
+        <img src="../screenshots/02_catalog.png" class="figure-img" alt="Figure 9.2: Catalog Management">
+        <div class="figure-caption">Figure 9.2: Product Catalog & Stock Manager</div>
+      </div>
+      <div class="figure-container">
+        <img src="../screenshots/03_simulator.png" class="figure-img" alt="Figure 9.3: Flash Sale Simulator">
+        <div class="figure-caption">Figure 9.3: Concurrency Simulator Running</div>
+      </div>
+      <div class="figure-container">
+        <img src="../screenshots/04_order_history.png" class="figure-img" alt="Figure 9.4: Order History Ledger">
+        <div class="figure-caption">Figure 9.4: Audited Order History Ledger</div>
+      </div>
     </div>
 
     <br>
@@ -647,25 +684,25 @@ completionLatch.await(30, TimeUnit.SECONDS);</pre>
           <th style="width: 28%;">Test Scenario</th>
           <th style="width: 20%;">Input</th>
           <th>Expected Result</th>
-          <th style="width: 12%; text-align: center;">Pass / Fail</th>
+          <th style="width: 12%; text-align: center;">Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td style="text-align: center;"><strong>T1</strong></td><td>Add valid purchase</td><td>Stock = 10, buy 2</td><td>Stock = 8, order recorded</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T2</strong></td><td>Insufficient stock</td><td>Stock = 2, buy 5</td><td><code>OutOfStockException</code> thrown</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T3</strong></td><td>Non-negative inventory</td><td>Stock = 3, buy 10</td><td>Stock remains 3 (never negative)</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T4</strong></td><td><strong>Concurrent Race Test</strong></td><td><strong>50 threads, Stock = 10</strong></td><td><strong>Exactly 10 SUCCESS, 40 BLOCKED, Stock = 0</strong></td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T5</strong></td><td>Invalid quantity</td><td>Quantity = 0 or -3</td><td><code>IllegalArgumentException</code> thrown</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T6</strong></td><td>Percentage discount</td><td>Amount = ₹2000, <code>SAVE10</code></td><td>₹200.00 discount applied</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T7</strong></td><td>Flat discount</td><td>Amount = ₹1500, <code>FLAT100</code></td><td>₹100.00 flat discount applied</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T8</strong></td><td>Bank offer discount</td><td>Amount = ₹3000, <code>BANK15</code></td><td>₹450.00 card discount applied</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T9</strong></td><td>Invalid coupon</td><td>Code = <code>"INVALID"</code></td><td>₹0.00 discount (no failure)</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T10</strong></td><td>Successful order audit</td><td>Valid purchase</td><td>Order status = <code>SUCCESS</code></td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T11</strong></td><td>Failed order audit</td><td>Stock depleted</td><td>Order status = <code>OUT_OF_STOCK</code></td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T12</strong></td><td>Revenue consistency</td><td>10 success + 40 failed</td><td>Revenue sums only success orders</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T13</strong></td><td>CSV persistence</td><td>Save order & product</td><td>RFC-4180 CSV written cleanly</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T14</strong></td><td>Restart inventory reload</td><td>Mutate stock & reload</td><td>Persisted stock matches reload</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
-        <tr><td style="text-align: center;"><strong>T15</strong></td><td>CSV report export</td><td>Export analytics audit</td><td>CSV file generated on disk</td><td style="text-align: center;"><strong>PASS</strong></td></tr>
+        <tr><td style="text-align: center;"><strong>T1</strong></td><td>Add valid purchase</td><td>Stock = 10, buy 2</td><td>Stock = 8, order recorded</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T2</strong></td><td>Insufficient stock</td><td>Stock = 2, buy 5</td><td><code>OutOfStockException</code> thrown</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T3</strong></td><td>Non-negative inventory</td><td>Stock = 3, buy 10</td><td>Stock remains 3 (never negative)</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T4</strong></td><td><strong>Concurrent Race Test</strong></td><td><strong>50 threads, Stock = 10</strong></td><td><strong>10 SUCCESS, 40 BLOCKED, Stock = 0</strong></td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T5</strong></td><td>Invalid quantity</td><td>Quantity = 0 or -3</td><td><code>IllegalArgumentException</code> thrown</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T6</strong></td><td>Percentage discount</td><td>Amount = ₹2000, <code>SAVE10</code></td><td>₹200.00 discount applied</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T7</strong></td><td>Flat discount</td><td>Amount = ₹1500, <code>FLAT100</code></td><td>₹100.00 flat discount applied</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T8</strong></td><td>Bank offer discount</td><td>Amount = ₹3000, <code>BANK15</code></td><td>₹450.00 card discount applied</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T9</strong></td><td>Invalid coupon</td><td>Code = <code>"INVALID"</code></td><td>₹0.00 discount (no failure)</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T10</strong></td><td>Successful order audit</td><td>Valid purchase</td><td>Order status = <code>SUCCESS</code></td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T11</strong></td><td>Failed order audit</td><td>Stock depleted</td><td>Order status = <code>OUT_OF_STOCK</code></td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T12</strong></td><td>Revenue consistency</td><td>10 success + 40 failed</td><td>Revenue sums only success orders</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T13</strong></td><td>CSV persistence</td><td>Save order & product</td><td>RFC-4180 CSV written cleanly</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T14</strong></td><td>Restart inventory reload</td><td>Mutate stock & reload</td><td>Persisted stock matches reload</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
+        <tr><td style="text-align: center;"><strong>T15</strong></td><td>CSV report export</td><td>Export analytics audit</td><td>CSV file generated on disk</td><td style="text-align: center; color: #15803d; font-weight: bold;">PASS</td></tr>
       </tbody>
     </table>
     <div class="page-footer"><span>FLASHDEAL PRO – Java Mini Project Report</span><span>Page 5</span></div>
@@ -712,7 +749,6 @@ completionLatch.await(30, TimeUnit.SECONDS);</pre>
       <li>Database connectivity using JDBC and SQLite / PostgreSQL.</li>
       <li>Network socket client-server architecture enabling multiple client laptops.</li>
       <li>Priority customer queues (e.g., VIP / Prime shoppers).</li>
-      <li>Dynamic real-time charting using JFreeChart.</li>
     </ul>
 
     <br>
@@ -734,11 +770,23 @@ completionLatch.await(30, TimeUnit.SECONDS);</pre>
   <!-- PAGE 10: APPENDICES A & B -->
   <div class="page">
     <h2>APPENDIX A: COMPLETE SOURCE CODE & REPOSITORY</h2>
-    <p>The complete, commented source code of every class, unit tests, UML specifications, and compilation scripts are available in the repository:</p>
-    <ul>
-      <li><strong>GitHub Repository:</strong> <a href="https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7" target="_blank">https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7</a></li>
-      <li><strong>Live Web Demonstration:</strong> <a href="https://flashdeal-pro-simulator.vercel.app" target="_blank">https://flashdeal-pro-simulator.vercel.app</a></li>
-    </ul>
+    <p>The complete, commented source code of every class, unit tests, UML specifications, and compilation scripts are publicly accessible in our project repository:</p>
+    
+    <!-- PROMINENT CLICKABLE HYPERLINKS BOX -->
+    <div style="background: #f1f5f9; border: 2px solid #2563eb; border-radius: 8px; padding: 14px 18px; margin: 15px 0;">
+      <p style="margin: 0 0 10px 0; font-size: 11pt;">
+        <span style="font-size: 13pt;">🐙</span> <strong>GitHub Project Repository (Clickable):</strong><br>
+        <a href="https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7" target="_blank" style="color: #1d4ed8; font-weight: bold; font-size: 11.5pt; text-decoration: underline;">
+          https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7
+        </a>
+      </p>
+      <p style="margin: 0; font-size: 11pt;">
+        <span style="font-size: 13pt;">🌐</span> <strong>Live Web Demonstration URL (Clickable):</strong><br>
+        <a href="https://flashdeal-pro-simulator.vercel.app" target="_blank" style="color: #059669; font-weight: bold; font-size: 11.5pt; text-decoration: underline;">
+          https://flashdeal-pro-simulator.vercel.app
+        </a>
+      </p>
+    </div>
 
     <br>
     <h2>APPENDIX B: TEAM CONTRIBUTION</h2>
@@ -783,4 +831,3 @@ completionLatch.await(30, TimeUnit.SECONDS);</pre>
 
 </body>
 </html>
-

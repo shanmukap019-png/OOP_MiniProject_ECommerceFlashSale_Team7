@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="mnr_logo.jpg" alt="MNR University Logo" width="180">
+</p>
+
 # MNR UNIVERSITY
 ### School of Engineering & Technology (SOET)
 ### Department of Computer Science and Engineering
@@ -26,6 +30,8 @@
 | 2 | **Butul Fatima** | **31** |
 | 3 | **Soundarya** | **33** |
 | 4 | **Sathwik K** | **34** |
+
+**Project Repository:** [https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7](https://github.com/shanmukap019-png/OOP_MiniProject_ECommerceFlashSale_Team7)
 
 ---
 
